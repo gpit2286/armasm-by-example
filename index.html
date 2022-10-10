@@ -1,0 +1,308 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta name=generator content="Hugo 0.91.2">
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Overview #  Originally this was a pet project of mine that was going to follow the progress of the popular game, Human Resource Machine. However, after working out the exercises, I noticed that there was a lot of redundancy because of the fundamental difference of architecture. From there I started trying to figure out how to structure this course.
+Since the ARM architecture is a reduced instruction set computer (RISC), there are only about 30 operations that the main processor understands.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Introduction">
+<meta property="og:description" content>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://armasm.com/">
+<title>Introduction | ARM Assembly By Example</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.cdf1d3339ad599910ecaf0b922791999eccee31382959665fd94442ac92b40e9.js integrity="sha256-zfHTM5rVmZEOyvC5InkZmezO4xOClZZl/ZREKskrQOk=" crossorigin=anonymous></script>
+<link rel=alternate type=application/rss+xml href=https://armasm.com/index.xml title="ARM Assembly By Example">
+<style>.blink_text{animation:.5s blinker linear infinite;color:red}@keyframes blinker{0%{opacity:1}50%{opacity:0}100%{opacity:1}}</style>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>ARM Assembly By Example</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<span>Getting to Hello World</span>
+<ul>
+<li>
+<a href=/docs/getting-to-hello-world/basics/>The Basics</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/exiting/>Program 1: Exiting</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/hello-world/>Program 2: Hello World</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Registers and Memory</span>
+<ul>
+<li>
+<a href=/docs/registers-and-memory/register-overview/>Register Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-overview/>Memory Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/find-the-otter/>Program 3: Find the Otter</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-copy/>Program 4: Memory Copy</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Branches and Conditionals</span>
+<ul>
+<li>
+<a href=/docs/branches-and-conditionals/conditionals/>Conditionals</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/branches-and-loops/>Branches and Loops</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/hello-world-revisited/>Program 5: Hello World Revisited</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/sticky-keyboard/>Program 6: Sticky Keyboard</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/inspecting-our-program/>Inspecting Our Program</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/cloning-myself/>Program 7: Cloning Myself</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Arithmetic</span>
+<ul>
+<li>
+<a href=/docs/arithmetic/errors-and-tests/>Errors and Tests</a>
+</li>
+<li>
+<a href=/docs/arithmetic/datatypes/>Datatypes</a>
+</li>
+<li>
+<a href=/docs/arithmetic/multiplication/>Multiplication</a>
+</li>
+<li>
+<a href=/docs/arithmetic/itoa/>Program 8: ITOA</a>
+</li>
+<li>
+<a href=/docs/arithmetic/the-stack/>The Stack</a>
+</li>
+<li>
+<a href=/docs/arithmetic/factorial/>Program 9: Factorials</a>
+</li>
+<li>
+<a href=/docs/arithmetic/sum-of-squares/>Program 10: Sum of Squares</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Bit Operations</span>
+<ul>
+<li>
+<a href=/docs/bit-operations/signed-numbers/>Signed Numbers</a>
+</li>
+<li>
+<a href=/docs/bit-operations/positivty/>Program 11: All Positivity</a>
+</li>
+<li>
+<a href=/docs/bit-operations/exorcise/>Exorcise and bicycle orr...</a>
+</li>
+<li>
+<a href=/docs/bit-operations/ok-be-negative/>Program 12: Ok, Be Negative</a>
+</li>
+<li>
+<a href=/docs/bit-operations/xor-cipher/>Program 13: XOR Cipher</a>
+</li>
+<li>
+<a href=/docs/bit-operations/shifting/>Shifting and Rotating</a>
+</li>
+<li>
+<a href=/docs/bit-operations/hex-and-love/>Program 14: Hex and Love</a>
+</li>
+<li>
+<a href=/docs/bit-operations/unsale/>Program 15: The Un-sale</a>
+</li>
+<li>
+<a href=/docs/bit-operations/64-bit-math/>Program 16: 64-bit Math</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Working in Linux</span>
+<ul>
+<li>
+<a href=/docs/working-in-linux/add-the-arguments/>Program 17: Add the Arguments</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-inputs/>Program 18: Add the Inputs</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-file/>Program 19: Add the File</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix A: VFP Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/fpu/overview/>FPU Overview</a>
+</li>
+<li>
+<a href=/docs/fpu/here-to-there/>Program 20: Here to There</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix B: NEON Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/neon/overview/>NEON Overview</a>
+</li>
+<li>
+<a href=/docs/neon/bus-rider/>Program 21: Bus Rider</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Introduction</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#overview>Overview</a></li>
+<li><a href=#requirements>Requirements</a></li>
+<li><a href=#extended-requirements>Extended Requirements</a></li>
+<li><a href=#the-future>The Future</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h2 id=overview>
+Overview
+<a class=anchor href=#overview>#</a>
+</h2>
+<p>Originally this was a pet project of mine that was going to follow the progress
+of the popular game, <a href=https://tomorrowcorporation.com/humanresourcemachine>Human Resource Machine</a>.
+However, after working out the exercises, I noticed that there was a lot of
+redundancy because of the fundamental difference of architecture. From there
+I started trying to figure out how to structure this course.</p>
+<p>Since the ARM architecture is a reduced instruction set computer (RISC), there are
+only about 30 operations that the main processor understands. What I ended up doing was
+listing them out, grouping them by function, and designing a better set of exercises
+that explored all of the operations.</p>
+<p>Within the exercises, I wanted to discuss some general concepts and how they
+relate to the assembly world. I tried to visit some important concepts that
+apply to all programming such as negative numbers and using bit logic to save processing cycles.</p>
+<p>I don&rsquo;t intend for this to be an &ldquo;authoritative guide to all things ARM assembly,&rdquo;
+but rather a set of exercises and lessons that will allow you to start your
+journey getting closer to the bare metal. While much of this information could be used
+for embedded programming, there is a short section that is dedicated to interacting
+with a Linux operating system specfically.</p>
+<h2 id=requirements>
+Requirements
+<a class=anchor href=#requirements>#</a>
+</h2>
+<ul>
+<li>A computer with an ARM (32-bit) processor that is at least ARMv6. For reference, any Raspberry
+Pi would work for this.</li>
+<li>Be running a linux operating system. Raspberry Pi OS (previously called Raspbian)
+is what I will use.</li>
+<li>The following software <strong>should</strong> be installed by default. If not, it will be
+needed
+<ul>
+<li>GNU Compiler Collection</li>
+<li>GNU Make</li>
+<li>GNU Debugger (gdb)</li>
+</ul>
+</li>
+</ul>
+<h2 id=extended-requirements>
+Extended Requirements
+<a class=anchor href=#extended-requirements>#</a>
+</h2>
+<ul>
+<li>For the floating point example you will need an ARM processor with a FPU
+co-processor (VFP)</li>
+<li>For the SIMD example, the processor will need the NEON co-processor</li>
+</ul>
+<h2 id=the-future>
+The Future
+<a class=anchor href=#the-future>#</a>
+</h2>
+<p>Below are some things that I would like to tackle in the future, but need to find the time.</p>
+<ul>
+<li>64-bit (AArch64) code guide</li>
+<li>Thumb Mode guide</li>
+<li>In depth floating point guide</li>
+<li>In depth NEON co-processor guide</li>
+<li>ASM FFI/inline support in other languages and vice versa</li>
+</ul>
+<p>If you really enjoyed the content and would like to support me, the #1 way is to share the website with
+someone else that may enjoy it. If you really would like to go above and beyond, send me
+an email and let me know what you thought of this series. (<a href=mailto:kyle@kylebaldw.in>kyle@kylebaldw.in</a>) If you REALLY REALLY
+want to go above and beyond, you can send me a tip to let me know you would like to
+see more content like this in the future.</p>
+<ul>
+<li><a href=https://www.buymeacoffee.com/kylewb>Buy Me a Coffee</a></li>
+<li>Venmo: <code>@kwb--</code></li>
+</ul>
+<img src=/img/venmo-qr.png style=width:150px alt="Venmo QR Code for @kwb--">
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#overview>Overview</a></li>
+<li><a href=#requirements>Requirements</a></li>
+<li><a href=#extended-requirements>Extended Requirements</a></li>
+<li><a href=#the-future>The Future</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

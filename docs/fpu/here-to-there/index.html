@@ -1,0 +1,409 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="**Note**: What I really really really wanted to do here was have you write a float to 
+ASCII implementation. As there are multiple papers written on the subject and it's 
+quite complex, I wanted to find another exercise that would allow you to interact 
+with a floating point number.  If you have a better exercise for this, please let 
+me know. 
+
+For this exercise, you are given two points. Find the distance between the two 
+points and then output the parts of the equation. If the the below bit 
+representation was the result: 
+
+| Sign (+/-) | Exponent | Fraction | 
+|:----------:|:--------:|:--------:|
+| 0    | 11110011 | 11100000000000000000000 | 
+| +     | 243 | 1/2 + 1/4 + 1/8 | 
+
+You would output:
+
+```
+Sign: + 
+Exponent: 116
+Fraction (1/x): 1 2 4 8
+```
+Input Points: (4, 5), (2, 1)
+">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Program 20: Here to There">
+<meta property="og:description" content="**Note**: What I really really really wanted to do here was have you write a float to 
+ASCII implementation. As there are multiple papers written on the subject and it's 
+quite complex, I wanted to find another exercise that would allow you to interact 
+with a floating point number.  If you have a better exercise for this, please let 
+me know. 
+
+For this exercise, you are given two points. Find the distance between the two 
+points and then output the parts of the equation. If the the below bit 
+representation was the result: 
+
+| Sign (+/-) | Exponent | Fraction | 
+|:----------:|:--------:|:--------:|
+| 0    | 11110011 | 11100000000000000000000 | 
+| +     | 243 | 1/2 + 1/4 + 1/8 | 
+
+You would output:
+
+```
+Sign: + 
+Exponent: 116
+Fraction (1/x): 1 2 4 8
+```
+Input Points: (4, 5), (2, 1)
+">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://armasm.com/docs/fpu/here-to-there/"><meta property="article:section" content="docs">
+<title>Program 20: Here to There | ARM Assembly By Example</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.cdf1d3339ad599910ecaf0b922791999eccee31382959665fd94442ac92b40e9.js integrity="sha256-zfHTM5rVmZEOyvC5InkZmezO4xOClZZl/ZREKskrQOk=" crossorigin=anonymous></script>
+<style>.blink_text{animation:.5s blinker linear infinite;color:red}@keyframes blinker{0%{opacity:1}50%{opacity:0}100%{opacity:1}}</style>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>ARM Assembly By Example</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<span>Getting to Hello World</span>
+<ul>
+<li>
+<a href=/docs/getting-to-hello-world/basics/>The Basics</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/exiting/>Program 1: Exiting</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/hello-world/>Program 2: Hello World</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Registers and Memory</span>
+<ul>
+<li>
+<a href=/docs/registers-and-memory/register-overview/>Register Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-overview/>Memory Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/find-the-otter/>Program 3: Find the Otter</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-copy/>Program 4: Memory Copy</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Branches and Conditionals</span>
+<ul>
+<li>
+<a href=/docs/branches-and-conditionals/conditionals/>Conditionals</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/branches-and-loops/>Branches and Loops</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/hello-world-revisited/>Program 5: Hello World Revisited</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/sticky-keyboard/>Program 6: Sticky Keyboard</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/inspecting-our-program/>Inspecting Our Program</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/cloning-myself/>Program 7: Cloning Myself</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Arithmetic</span>
+<ul>
+<li>
+<a href=/docs/arithmetic/errors-and-tests/>Errors and Tests</a>
+</li>
+<li>
+<a href=/docs/arithmetic/datatypes/>Datatypes</a>
+</li>
+<li>
+<a href=/docs/arithmetic/multiplication/>Multiplication</a>
+</li>
+<li>
+<a href=/docs/arithmetic/itoa/>Program 8: ITOA</a>
+</li>
+<li>
+<a href=/docs/arithmetic/the-stack/>The Stack</a>
+</li>
+<li>
+<a href=/docs/arithmetic/factorial/>Program 9: Factorials</a>
+</li>
+<li>
+<a href=/docs/arithmetic/sum-of-squares/>Program 10: Sum of Squares</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Bit Operations</span>
+<ul>
+<li>
+<a href=/docs/bit-operations/signed-numbers/>Signed Numbers</a>
+</li>
+<li>
+<a href=/docs/bit-operations/positivty/>Program 11: All Positivity</a>
+</li>
+<li>
+<a href=/docs/bit-operations/exorcise/>Exorcise and bicycle orr...</a>
+</li>
+<li>
+<a href=/docs/bit-operations/ok-be-negative/>Program 12: Ok, Be Negative</a>
+</li>
+<li>
+<a href=/docs/bit-operations/xor-cipher/>Program 13: XOR Cipher</a>
+</li>
+<li>
+<a href=/docs/bit-operations/shifting/>Shifting and Rotating</a>
+</li>
+<li>
+<a href=/docs/bit-operations/hex-and-love/>Program 14: Hex and Love</a>
+</li>
+<li>
+<a href=/docs/bit-operations/unsale/>Program 15: The Un-sale</a>
+</li>
+<li>
+<a href=/docs/bit-operations/64-bit-math/>Program 16: 64-bit Math</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Working in Linux</span>
+<ul>
+<li>
+<a href=/docs/working-in-linux/add-the-arguments/>Program 17: Add the Arguments</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-inputs/>Program 18: Add the Inputs</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-file/>Program 19: Add the File</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix A: VFP Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/fpu/overview/>FPU Overview</a>
+</li>
+<li>
+<a href=/docs/fpu/here-to-there/ class=active>Program 20: Here to There</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix B: NEON Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/neon/overview/>NEON Overview</a>
+</li>
+<li>
+<a href=/docs/neon/bus-rider/>Program 21: Bus Rider</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Program 20: Here to There</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#floating-point-numbers>Floating point numbers</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown>
+<h1>
+<a href=/docs/fpu/here-to-there/ style=color:#000>Program 20: Here to There</a>
+</h1>
+<h2 id=floating-point-numbers>
+Floating point numbers
+<a class=anchor href=#floating-point-numbers>#</a>
+</h2>
+<p>How does a floating point number actually work? IEEE 754 is the tech sheet that
+talks about floating point numbers. For single precision, it says that the layout
+is:</p>
+<table>
+<thead>
+<tr>
+<th style=text-align:center>Sign (+/-)</th>
+<th style=text-align:center>Exponent</th>
+<th style=text-align:center>Fraction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style=text-align:center>bit 31</td>
+<td style=text-align:center>bits 23-30</td>
+<td style=text-align:center>bit 0-22</td>
+</tr>
+</tbody>
+</table>
+<p>For double precision it is:</p>
+<table>
+<thead>
+<tr>
+<th style=text-align:center>Sign (+/-)</th>
+<th style=text-align:center>Exponent</th>
+<th style=text-align:center>Fraction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style=text-align:center>bit 63</td>
+<td style=text-align:center>bits 52-62</td>
+<td style=text-align:center>bit 0-51</td>
+</tr>
+</tbody>
+</table>
+<p>The sign bit is the easy part. If the bit is 1, it is negative and if it&rsquo;s 0 the
+number is positive.</p>
+<p>The next set of bits are the exponent for the number 2.
+When representing the exponent, the number here will never be read as negative.
+Instead, the exponent is read as a positive
+and a bias is removed. (127 for single and 1023 for double) So if, in a single
+precision float, the exponent is written as 129, the exponent is really 2. (129-127)</p>
+<p>The fraction or mantissa is represented as 1 (not encoded) plus the addition
+of 2^-x where x is the 1-indexed bit from the most significant side.
+If the fraction started with <code>101011</code>&mldr; it would represent.</p>
+<link rel=stylesheet href=/katex/katex.min.css>
+<script defer src=/katex/katex.min.js></script>
+<script defer src=/katex/auto-render.min.js onload=renderMathInElement(document.body)></script><span>
+\[1 + 2^{-1} + 2^{-3} + 2^{-5} + 2^{-6} ...
+\\
+\text{or}
+\\
+1 + \frac{1}{2} + \frac{1}{8} + \frac{1}{32} + \frac{1}{64} ... \]
+</span>
+<p>If you really want to dig into this conversion, <a href=http://class.ece.iastate.edu/arun/Cpre305/ieee754/ie4.html>this website</a> is one of the most clear and concise explanations I&rsquo;ve found.</p>
+<hr>
+<h2>Program 20: Here to There Video - Coming Soon </h2>
+<div style=position:relative;padding-bottom:56.25%;height:0;overflow:hidden>
+<img src="https://loremflickr.com/960/540/mango,fruit?lock=2">
+</div>
+<div style=width:100%;display:flex;flex-direction:column>
+<div style="flex:1 0;padding-bottom:16px">
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Description of Program</div>
+<div><p><strong>Note</strong>: What I really really really wanted to do here was have you write a float to
+ASCII implementation. As there are multiple papers written on the subject and it&rsquo;s
+quite complex, I wanted to find another exercise that would allow you to interact
+with a floating point number. If you have a better exercise for this, please let
+me know.</p>
+<p>For this exercise, you are given two points. Find the distance between the two
+points and then output the parts of the equation. If the the below bit
+representation was the result:</p>
+<table>
+<thead>
+<tr>
+<th style=text-align:center>Sign (+/-)</th>
+<th style=text-align:center>Exponent</th>
+<th style=text-align:center>Fraction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style=text-align:center>0</td>
+<td style=text-align:center>11110011</td>
+<td style=text-align:center>11100000000000000000000</td>
+</tr>
+<tr>
+<td style=text-align:center>+</td>
+<td style=text-align:center>243</td>
+<td style=text-align:center>1/2 + 1/4 + 1/8</td>
+</tr>
+</tbody>
+</table>
+<p>You would output:</p>
+<pre tabindex=0><code>Sign: + 
+Exponent: 116
+Fraction (1/x): 1 2 4 8
+</code></pre><p>Input Points: (4, 5), (2, 1)</p>
+</div>
+</div>
+</div>
+<div style=display:flex;flex-direction:row>
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Template/Input</div>
+<div>
+<a href=https://github.com/gpit2286/armasm-by-example/tree/master/20-here-to-there/template>Github</a>
+</div>
+</div>
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Completed Code</div>
+<div><a href=https://github.com/gpit2286/armasm-by-example/tree/master/20-here-to-there>Github</a></div>
+</div>
+<div style="display:flex;flex:2 0 auto;flex-direction:column">
+<div style=font-weight:700>Expected Output</div>
+<div>
+<pre style=margin:0;padding-top:4px;width:auto>Sign: &#43;
+Exponent: 2
+Fraction (1/x): 1 16 32 64 128 \
+2048 4096 16384 32768 65536 262144 \
+524288 1048576 2097152 8388608
+</pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#floating-point-numbers>Floating point numbers</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="For this program, create a program that prompts the user to enter some numbers. 
+After each number, total the numbers entered by the user. When an empty line 
+is entered, display the total. 
+
+The numbers you should enter are: 
+- 6263
+- 8050
+- 7979
+- 7300
+- 6320   
+">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Program 18: Add the Inputs">
+<meta property="og:description" content="For this program, create a program that prompts the user to enter some numbers. 
+After each number, total the numbers entered by the user. When an empty line 
+is entered, display the total. 
+
+The numbers you should enter are: 
+- 6263
+- 8050
+- 7979
+- 7300
+- 6320   
+">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://armasm.com/docs/working-in-linux/add-the-inputs/"><meta property="article:section" content="docs">
+<title>Program 18: Add the Inputs | ARM Assembly By Example</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.cdf1d3339ad599910ecaf0b922791999eccee31382959665fd94442ac92b40e9.js integrity="sha256-zfHTM5rVmZEOyvC5InkZmezO4xOClZZl/ZREKskrQOk=" crossorigin=anonymous></script>
+<style>.blink_text{animation:.5s blinker linear infinite;color:red}@keyframes blinker{0%{opacity:1}50%{opacity:0}100%{opacity:1}}</style>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>ARM Assembly By Example</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<span>Getting to Hello World</span>
+<ul>
+<li>
+<a href=/docs/getting-to-hello-world/basics/>The Basics</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/exiting/>Program 1: Exiting</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/hello-world/>Program 2: Hello World</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Registers and Memory</span>
+<ul>
+<li>
+<a href=/docs/registers-and-memory/register-overview/>Register Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-overview/>Memory Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/find-the-otter/>Program 3: Find the Otter</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-copy/>Program 4: Memory Copy</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Branches and Conditionals</span>
+<ul>
+<li>
+<a href=/docs/branches-and-conditionals/conditionals/>Conditionals</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/branches-and-loops/>Branches and Loops</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/hello-world-revisited/>Program 5: Hello World Revisited</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/sticky-keyboard/>Program 6: Sticky Keyboard</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/inspecting-our-program/>Inspecting Our Program</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/cloning-myself/>Program 7: Cloning Myself</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Arithmetic</span>
+<ul>
+<li>
+<a href=/docs/arithmetic/errors-and-tests/>Errors and Tests</a>
+</li>
+<li>
+<a href=/docs/arithmetic/datatypes/>Datatypes</a>
+</li>
+<li>
+<a href=/docs/arithmetic/multiplication/>Multiplication</a>
+</li>
+<li>
+<a href=/docs/arithmetic/itoa/>Program 8: ITOA</a>
+</li>
+<li>
+<a href=/docs/arithmetic/the-stack/>The Stack</a>
+</li>
+<li>
+<a href=/docs/arithmetic/factorial/>Program 9: Factorials</a>
+</li>
+<li>
+<a href=/docs/arithmetic/sum-of-squares/>Program 10: Sum of Squares</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Bit Operations</span>
+<ul>
+<li>
+<a href=/docs/bit-operations/signed-numbers/>Signed Numbers</a>
+</li>
+<li>
+<a href=/docs/bit-operations/positivty/>Program 11: All Positivity</a>
+</li>
+<li>
+<a href=/docs/bit-operations/exorcise/>Exorcise and bicycle orr...</a>
+</li>
+<li>
+<a href=/docs/bit-operations/ok-be-negative/>Program 12: Ok, Be Negative</a>
+</li>
+<li>
+<a href=/docs/bit-operations/xor-cipher/>Program 13: XOR Cipher</a>
+</li>
+<li>
+<a href=/docs/bit-operations/shifting/>Shifting and Rotating</a>
+</li>
+<li>
+<a href=/docs/bit-operations/hex-and-love/>Program 14: Hex and Love</a>
+</li>
+<li>
+<a href=/docs/bit-operations/unsale/>Program 15: The Un-sale</a>
+</li>
+<li>
+<a href=/docs/bit-operations/64-bit-math/>Program 16: 64-bit Math</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Working in Linux</span>
+<ul>
+<li>
+<a href=/docs/working-in-linux/add-the-arguments/>Program 17: Add the Arguments</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-inputs/ class=active>Program 18: Add the Inputs</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-file/>Program 19: Add the File</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix A: VFP Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/fpu/overview/>FPU Overview</a>
+</li>
+<li>
+<a href=/docs/fpu/here-to-there/>Program 20: Here to There</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix B: NEON Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/neon/overview/>NEON Overview</a>
+</li>
+<li>
+<a href=/docs/neon/bus-rider/>Program 21: Bus Rider</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Program 18: Add the Inputs</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#reading-input-and-the-docs>Reading input and the docs</a></li>
+<li><a href=#automatic-length-calculation>Automatic length calculation</a></li>
+<li><a href=#another-quick-note-about-errors>Another quick note about errors</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown>
+<h1>
+<a href=/docs/working-in-linux/add-the-inputs/ style=color:#000>Program 18: Add the Inputs</a>
+</h1>
+<h2 id=reading-input-and-the-docs>
+Reading input and the docs
+<a class=anchor href=#reading-input-and-the-docs>#</a>
+</h2>
+<p>As you dig in deeper and deeper into your programming journey, it becomes more and
+more important to be able to read the docs. As boring and monotonous as that sounds,
+this is the best way to learn. Start by looking at the
+<a href="https://syscalls.w3challs.com/?arch=arm_strong">table of syscalls</a> that you saw
+before. You can see that read is #3.</p>
+<p>To learn more about the <code>read</code> operation, you can
+use the man pages by looking at the 2 (syscall) entry. In the terminal type: <code>man 2 read</code>
+This tells you everything you need to know about how to make this syscall and
+what variables it is expecting.</p>
+<p>As you read this man page, you can see that read takes three arguments. For this
+exercise, you will read from stdin. To give them to the supervisor, you will put
+them in r0, r1, and r2 &ndash; very much in the same way you call write!</p>
+<ol>
+<li>int fd: 0 = stdin</li>
+<li>void *buf: The * tells you that is is expecting an address. So this is where the
+output buffer space is in memory. Since the largest unsigned 32-bit number is
+4,294,967,296, this needs to be 10. You can make this a null terminated area for
+easier processing. (Just change the number of bytes to 11 as opposed to 10)</li>
+<li>size_t count: This is the max number of characters you are willing to read.
+Again, since the largest number is 10 digits, you only want to accept 10 digits.</li>
+</ol>
+<h2 id=automatic-length-calculation>
+Automatic length calculation
+<a class=anchor href=#automatic-length-calculation>#</a>
+</h2>
+<p>Imagine you have a long string in the data section and you don&rsquo;t want to calculate
+the length. Or possible a string where the length may change. You can use the
+following form to automatically calculate the length on compile. The dot acts as
+representation of &ldquo;this memory address here&rdquo; and then you subtract the address
+at the given label. This results in the length:</p>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-armasm data-lang=armasm><span style=color:#dc322f;font-weight:700>.data</span>
+<span style=color:#268bd2>prompt</span>:<span style=color:#dc322f;font-weight:700>     .asciz      </span>&#34;<span style=color:#2aa198>Input a number to add or Enter to sum:\n</span>&#34;
+<span style=color:#268bd2>promptlen</span>:<span style=color:#dc322f;font-weight:700>  .word       </span>.-prompt
+</code></pre></div><h2 id=another-quick-note-about-errors>
+Another quick note about errors
+<a class=anchor href=#another-quick-note-about-errors>#</a>
+</h2>
+<p>Again, I feel like I need to stress the absence of error checking in these examples.
+Especially when it comes to reading user input: <em>things will go wrong</em>. If the numbers
+added overflow, there is no check there. If the number entered is negative, there
+is no check there. If the input length is > 10, there isn&rsquo;t really a check there.
+Please, please, please, stand on the shoulders of those who came before you and
+always be aware of all the ways something can go wrong. This is more true in
+assembly than any other programming language.</p>
+<hr>
+<h2>Program 18: Add the Inputs Video - Coming Soon </h2>
+<div style=position:relative;padding-bottom:56.25%;height:0;overflow:hidden>
+<img src="https://loremflickr.com/960/540/mango,fruit?lock=2">
+</div>
+<div style=width:100%;display:flex;flex-direction:column>
+<div style="flex:1 0;padding-bottom:16px">
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Description of Program</div>
+<div><p>For this program, create a program that prompts the user to enter some numbers.
+After each number, total the numbers entered by the user. When an empty line
+is entered, display the total.</p>
+<p>The numbers you should enter are:</p>
+<ul>
+<li>6263</li>
+<li>8050</li>
+<li>7979</li>
+<li>7300</li>
+<li>6320</li>
+</ul>
+</div>
+</div>
+</div>
+<div style=display:flex;flex-direction:row>
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Template/Input</div>
+<div>
+<a href=https://github.com/gpit2286/armasm-by-example/tree/master/18-add-the-inputs/template>Github</a>
+</div>
+</div>
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Completed Code</div>
+<div><a href=https://github.com/gpit2286/armasm-by-example/tree/master/18-add-the-inputs>Github</a></div>
+</div>
+<div style="display:flex;flex:2 0 auto;flex-direction:column">
+<div style=font-weight:700>Expected Output</div>
+<div>
+<pre style=margin:0;padding-top:4px;width:auto>35912</pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#reading-input-and-the-docs>Reading input and the docs</a></li>
+<li><a href=#automatic-length-calculation>Automatic length calculation</a></li>
+<li><a href=#another-quick-note-about-errors>Another quick note about errors</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="I have a bunch of colors saved from my web programing and I would like to take 
+those rgb values and convert them to #rrggbb values. Write a program that takes 
+sets of three rgb values and converts them into the #rrggbb hex representation. 
+
+A test set of values in included in the template. 
+
+* Note: The red color will never be 0. 
+">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Program 14: Hex and Love">
+<meta property="og:description" content="I have a bunch of colors saved from my web programing and I would like to take 
+those rgb values and convert them to #rrggbb values. Write a program that takes 
+sets of three rgb values and converts them into the #rrggbb hex representation. 
+
+A test set of values in included in the template. 
+
+* Note: The red color will never be 0. 
+">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://armasm.com/docs/bit-operations/hex-and-love/"><meta property="article:section" content="docs">
+<title>Program 14: Hex and Love | ARM Assembly By Example</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.cdf1d3339ad599910ecaf0b922791999eccee31382959665fd94442ac92b40e9.js integrity="sha256-zfHTM5rVmZEOyvC5InkZmezO4xOClZZl/ZREKskrQOk=" crossorigin=anonymous></script>
+<style>.blink_text{animation:.5s blinker linear infinite;color:red}@keyframes blinker{0%{opacity:1}50%{opacity:0}100%{opacity:1}}</style>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>ARM Assembly By Example</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<span>Getting to Hello World</span>
+<ul>
+<li>
+<a href=/docs/getting-to-hello-world/basics/>The Basics</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/exiting/>Program 1: Exiting</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/hello-world/>Program 2: Hello World</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Registers and Memory</span>
+<ul>
+<li>
+<a href=/docs/registers-and-memory/register-overview/>Register Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-overview/>Memory Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/find-the-otter/>Program 3: Find the Otter</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-copy/>Program 4: Memory Copy</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Branches and Conditionals</span>
+<ul>
+<li>
+<a href=/docs/branches-and-conditionals/conditionals/>Conditionals</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/branches-and-loops/>Branches and Loops</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/hello-world-revisited/>Program 5: Hello World Revisited</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/sticky-keyboard/>Program 6: Sticky Keyboard</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/inspecting-our-program/>Inspecting Our Program</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/cloning-myself/>Program 7: Cloning Myself</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Arithmetic</span>
+<ul>
+<li>
+<a href=/docs/arithmetic/errors-and-tests/>Errors and Tests</a>
+</li>
+<li>
+<a href=/docs/arithmetic/datatypes/>Datatypes</a>
+</li>
+<li>
+<a href=/docs/arithmetic/multiplication/>Multiplication</a>
+</li>
+<li>
+<a href=/docs/arithmetic/itoa/>Program 8: ITOA</a>
+</li>
+<li>
+<a href=/docs/arithmetic/the-stack/>The Stack</a>
+</li>
+<li>
+<a href=/docs/arithmetic/factorial/>Program 9: Factorials</a>
+</li>
+<li>
+<a href=/docs/arithmetic/sum-of-squares/>Program 10: Sum of Squares</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Bit Operations</span>
+<ul>
+<li>
+<a href=/docs/bit-operations/signed-numbers/>Signed Numbers</a>
+</li>
+<li>
+<a href=/docs/bit-operations/positivty/>Program 11: All Positivity</a>
+</li>
+<li>
+<a href=/docs/bit-operations/exorcise/>Exorcise and bicycle orr...</a>
+</li>
+<li>
+<a href=/docs/bit-operations/ok-be-negative/>Program 12: Ok, Be Negative</a>
+</li>
+<li>
+<a href=/docs/bit-operations/xor-cipher/>Program 13: XOR Cipher</a>
+</li>
+<li>
+<a href=/docs/bit-operations/shifting/>Shifting and Rotating</a>
+</li>
+<li>
+<a href=/docs/bit-operations/hex-and-love/ class=active>Program 14: Hex and Love</a>
+</li>
+<li>
+<a href=/docs/bit-operations/unsale/>Program 15: The Un-sale</a>
+</li>
+<li>
+<a href=/docs/bit-operations/64-bit-math/>Program 16: 64-bit Math</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Working in Linux</span>
+<ul>
+<li>
+<a href=/docs/working-in-linux/add-the-arguments/>Program 17: Add the Arguments</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-inputs/>Program 18: Add the Inputs</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-file/>Program 19: Add the File</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix A: VFP Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/fpu/overview/>FPU Overview</a>
+</li>
+<li>
+<a href=/docs/fpu/here-to-there/>Program 20: Here to There</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix B: NEON Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/neon/overview/>NEON Overview</a>
+</li>
+<li>
+<a href=/docs/neon/bus-rider/>Program 21: Bus Rider</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Program 14: Hex and Love</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#converting-decimal-to-hexadecimal>Converting decimal to hexadecimal</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown>
+<h1>
+<a href=/docs/bit-operations/hex-and-love/ style=color:#000>Program 14: Hex and Love</a>
+</h1>
+<h2 id=converting-decimal-to-hexadecimal>
+Converting decimal to hexadecimal
+<a class=anchor href=#converting-decimal-to-hexadecimal>#</a>
+</h2>
+<p>You know that you can enter numbers as decimal, octal, binary, or hexadecimal.
+The question is, however, how do you actually change base? Going from binary
+(base 2) to hexadecimal (base 16) is fairly easy because 2 fits inside of 16. When
+you go from decimal (base 10) to hexadecimal, you need to get to that intermediate
+step.</p>
+<p>Take the number 200. To visualize the base change better, write 200 in binary. From
+there you can see that 200 fits inside 1 byte. Within that byte, you can break it
+into two 4-bit slices. These two 4-bit slices are then converted to 0-F to get
+the hexadecimal representation.</p>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>    Decimal: 200 
+    Binary: 11001000 
+        Group1: 1100 = 12 =&gt; c 
+        Group2: 1000 = 8 =&gt; 8
+    Hexadecimal: c8 
+</code></pre></div><hr>
+<h2>Program 14: Hex and Love Video </h2>
+<div style=position:relative;padding-bottom:56.25%;height:0;overflow:hidden>
+<iframe src=https://www.youtube.com/embed/CIraHiRy1yY style=position:absolute;top:0;left:0;width:100%;height:100%;border:0 allowfullscreen title="YouTube Video"></iframe>
+</div>
+<div style=width:100%;display:flex;flex-direction:column>
+<div style="flex:1 0;padding-bottom:16px">
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Description of Program</div>
+<div><p>I have a bunch of colors saved from my web programing and I would like to take
+those rgb values and convert them to #rrggbb values. Write a program that takes
+sets of three rgb values and converts them into the #rrggbb hex representation.</p>
+<p>A test set of values in included in the template.</p>
+<ul>
+<li>Note: The red color will never be 0.</li>
+</ul>
+</div>
+</div>
+</div>
+<div style=display:flex;flex-direction:row>
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Template/Input</div>
+<div>
+<a href=https://github.com/gpit2286/armasm-by-example/tree/master/14-hex-and-love/template>Github</a>
+</div>
+</div>
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Completed Code</div>
+<div><a href=https://github.com/gpit2286/armasm-by-example/tree/master/14-hex-and-love>Github</a></div>
+</div>
+<div style="display:flex;flex:2 0 auto;flex-direction:column">
+<div style=font-weight:700>Expected Output</div>
+<div>
+<pre style=margin:0;padding-top:4px;width:auto>D4E4BC
+96ACB7
+36558F
+40376E
+48233C
+</pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#converting-decimal-to-hexadecimal>Converting decimal to hexadecimal</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

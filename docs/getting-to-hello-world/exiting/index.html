@@ -1,0 +1,358 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Write a program that exits with the error code 0. 
+">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Program 1: Exiting">
+<meta property="og:description" content="Write a program that exits with the error code 0. 
+">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://armasm.com/docs/getting-to-hello-world/exiting/"><meta property="article:section" content="docs">
+<title>Program 1: Exiting | ARM Assembly By Example</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.cdf1d3339ad599910ecaf0b922791999eccee31382959665fd94442ac92b40e9.js integrity="sha256-zfHTM5rVmZEOyvC5InkZmezO4xOClZZl/ZREKskrQOk=" crossorigin=anonymous></script>
+<style>.blink_text{animation:.5s blinker linear infinite;color:red}@keyframes blinker{0%{opacity:1}50%{opacity:0}100%{opacity:1}}</style>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>ARM Assembly By Example</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<span>Getting to Hello World</span>
+<ul>
+<li>
+<a href=/docs/getting-to-hello-world/basics/>The Basics</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/exiting/ class=active>Program 1: Exiting</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/hello-world/>Program 2: Hello World</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Registers and Memory</span>
+<ul>
+<li>
+<a href=/docs/registers-and-memory/register-overview/>Register Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-overview/>Memory Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/find-the-otter/>Program 3: Find the Otter</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-copy/>Program 4: Memory Copy</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Branches and Conditionals</span>
+<ul>
+<li>
+<a href=/docs/branches-and-conditionals/conditionals/>Conditionals</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/branches-and-loops/>Branches and Loops</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/hello-world-revisited/>Program 5: Hello World Revisited</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/sticky-keyboard/>Program 6: Sticky Keyboard</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/inspecting-our-program/>Inspecting Our Program</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/cloning-myself/>Program 7: Cloning Myself</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Arithmetic</span>
+<ul>
+<li>
+<a href=/docs/arithmetic/errors-and-tests/>Errors and Tests</a>
+</li>
+<li>
+<a href=/docs/arithmetic/datatypes/>Datatypes</a>
+</li>
+<li>
+<a href=/docs/arithmetic/multiplication/>Multiplication</a>
+</li>
+<li>
+<a href=/docs/arithmetic/itoa/>Program 8: ITOA</a>
+</li>
+<li>
+<a href=/docs/arithmetic/the-stack/>The Stack</a>
+</li>
+<li>
+<a href=/docs/arithmetic/factorial/>Program 9: Factorials</a>
+</li>
+<li>
+<a href=/docs/arithmetic/sum-of-squares/>Program 10: Sum of Squares</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Bit Operations</span>
+<ul>
+<li>
+<a href=/docs/bit-operations/signed-numbers/>Signed Numbers</a>
+</li>
+<li>
+<a href=/docs/bit-operations/positivty/>Program 11: All Positivity</a>
+</li>
+<li>
+<a href=/docs/bit-operations/exorcise/>Exorcise and bicycle orr...</a>
+</li>
+<li>
+<a href=/docs/bit-operations/ok-be-negative/>Program 12: Ok, Be Negative</a>
+</li>
+<li>
+<a href=/docs/bit-operations/xor-cipher/>Program 13: XOR Cipher</a>
+</li>
+<li>
+<a href=/docs/bit-operations/shifting/>Shifting and Rotating</a>
+</li>
+<li>
+<a href=/docs/bit-operations/hex-and-love/>Program 14: Hex and Love</a>
+</li>
+<li>
+<a href=/docs/bit-operations/unsale/>Program 15: The Un-sale</a>
+</li>
+<li>
+<a href=/docs/bit-operations/64-bit-math/>Program 16: 64-bit Math</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Working in Linux</span>
+<ul>
+<li>
+<a href=/docs/working-in-linux/add-the-arguments/>Program 17: Add the Arguments</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-inputs/>Program 18: Add the Inputs</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-file/>Program 19: Add the File</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix A: VFP Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/fpu/overview/>FPU Overview</a>
+</li>
+<li>
+<a href=/docs/fpu/here-to-there/>Program 20: Here to There</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix B: NEON Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/neon/overview/>NEON Overview</a>
+</li>
+<li>
+<a href=/docs/neon/bus-rider/>Program 21: Bus Rider</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Program 1: Exiting</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#mov-operation>MOV operation</a></li>
+<li><a href=#supervisor-calls>Supervisor Calls</a>
+<ul>
+<li><a href=#reading-the-syscall-table>Reading the syscall table</a></li>
+<li><a href=#a-note-about-data-types>A Note about data types</a></li>
+</ul>
+</li>
+<li><a href=#compiling-and-running>Compiling and Running</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown>
+<h1>
+<a href=/docs/getting-to-hello-world/exiting/ style=color:#000>Program 1: Exiting</a>
+</h1>
+<p>While you may wonder why you need to talk about how to exit a program, know that you do. Unlike
+many higher languages, assembly programs don&rsquo;t gracefully exit when you stop writing code.
+What happens if you don&rsquo;t exit the program is the the computer will keep reading data
+in memory past the last opcode. Because you are running in a *nix environment, you will
+get a segmentation fault as it will drift into memory you don&rsquo;t have access to. If
+this were an embedded solution (with no operating system), it is the definition of
+unexpected behavior.</p>
+<h2 id=mov-operation>
+MOV operation
+<a class=anchor href=#mov-operation>#</a>
+</h2>
+<p>The first operation you are going to use is <code>mov</code>. <code>mov</code> <strong>moves</strong> a value into
+a register. It can move an immediate value or a value stored in another register.</p>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-armasm data-lang=armasm>    mov     <span style=color:#cb4b16>r0</span>, #<span style=color:#2aa198;font-weight:700>2</span>          <span style=color:#93a1a1;font-style:italic>@ moves the value 2 into register 0 
+</span><span style=color:#93a1a1;font-style:italic></span>    mov     <span style=color:#cb4b16>r1</span>, <span style=color:#cb4b16>r0</span>          <span style=color:#93a1a1;font-style:italic>@ copies the value 2 from register 0 to register 1 
+</span><span style=color:#93a1a1;font-style:italic></span>                            <span style=color:#93a1a1;font-style:italic>@ register 0 is still equal to 2
+</span></code></pre></div><h2 id=supervisor-calls>
+Supervisor Calls
+<a class=anchor href=#supervisor-calls>#</a>
+</h2>
+<p>Supervisor calls or system calls (syscalls) are the way that our program communicates
+with the operating system (known as the supervisor). There is a
+<a href="https://syscalls.w3challs.com/?arch=arm_strong">whole list</a> of calls that you
+can make ranging from opening files, to forking processes, to exiting programs.</p>
+<p>There are two ways you can make supervisor calls in ARM assembly, but we will only
+be using this format:</p>
+<ul>
+<li>Supervisor call number loaded into r7 (without the 0x900000 prefix)</li>
+<li>Parameters generally loaded into r0-r3</li>
+<li>Supervisor call executed with the command <code>svc 0</code></li>
+</ul>
+<h3 id=reading-the-syscall-table>
+Reading the syscall table
+<a class=anchor href=#reading-the-syscall-table>#</a>
+</h3>
+<p>Take a second and go to the link labeled as whole list. You can see the name is
+the name of the function. For this first example, you need exit. As you can see it&rsquo;s
+close to the top. If you read across the table, you can see the next column is
+labeled as r7. This is the number you need to put into register 7, but without the
+0x900000 prefix. (i.e., 1) The next couple of columns are the parameters that will
+be passed to the function, conveniently labeled r0-r5. For the exit call, you only
+need one parameter put into r0, which is the <code>int error_code</code>.</p>
+<h3 id=a-note-about-data-types>
+A Note about data types
+<a class=anchor href=#a-note-about-data-types>#</a>
+</h3>
+<p>The exit call expects an integer. You will see that when you use this, you
+can&rsquo;t tell the computer that you are using
+and integer, but only put a number into the register. The types that are listed in
+this table, for the assembly programs you will be writing, should be approached
+as &ldquo;this the the type the kernel will interpret the value as.&rdquo; While it may not
+effect us too much in this course, consider this.</p>
+<p>Imagine you are calling the read
+command and the file descriptor is 4,294,967,259. (Not practical but suspend
+disbelief.) Because the read call expects an unsigned integer, this would be fine.
+Now imagine that there was some crazy error and you wanted to pass the file descriptor
+as the error code on the exit call to debug. Since the exit call is NOT unsigned,
+it would actually output -37 because the exit call <em>can</em> be negative. We&rsquo;ll talk
+more about this later, but just keep this in the back of your head when you are
+reading the table and interpreting the data types.</p>
+<h2 id=compiling-and-running>
+Compiling and Running
+<a class=anchor href=#compiling-and-running>#</a>
+</h2>
+<p>To compile the program, you actually need to run two commands. If the filename is
+main.s, the first command you need to run is:</p>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>as -o main.o main.s
+</code></pre></div><p>This will invoke the assembler and take all of the code we wrote and convert it
+into the 1&rsquo;s and 0&rsquo;s that the processor will understand. The next thing you need
+to do it run the linker with:</p>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>ld -o main main.o
+</code></pre></div><p>This will take the raw code and organize it in the way the operating system and
+processor expects it to be in. You can then finally run:</p>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>./main
+</code></pre></div><p>and get the result.</p>
+<hr>
+<h2>Program 1: Exiting Video </h2>
+<div style=position:relative;padding-bottom:56.25%;height:0;overflow:hidden>
+<iframe src=https://www.youtube.com/embed/qX6NoqkAMGU style=position:absolute;top:0;left:0;width:100%;height:100%;border:0 allowfullscreen title="YouTube Video"></iframe>
+</div>
+<div style=width:100%;display:flex;flex-direction:column>
+<div style="flex:1 0;padding-bottom:16px">
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Description of Program</div>
+<div>Write a program that exits with the error code 0.</div>
+</div>
+</div>
+<div style=display:flex;flex-direction:row>
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Template/Input</div>
+<div>
+None
+</div>
+</div>
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Completed Code</div>
+<div><a href=https://github.com/gpit2286/armasm-by-example/tree/master/01-exiting>Github</a></div>
+</div>
+<div style="display:flex;flex:2 0 auto;flex-direction:column">
+<div style=font-weight:700>Expected Output</div>
+<div>
+<pre style=margin:0;padding-top:4px;width:auto>armasm:~$ ./main 
+armasm:~$ echo $?
+0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#mov-operation>MOV operation</a></li>
+<li><a href=#supervisor-calls>Supervisor Calls</a>
+<ul>
+<li><a href=#reading-the-syscall-table>Reading the syscall table</a></li>
+<li><a href=#a-note-about-data-types>A Note about data types</a></li>
+</ul>
+</li>
+<li><a href=#compiling-and-running>Compiling and Running</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

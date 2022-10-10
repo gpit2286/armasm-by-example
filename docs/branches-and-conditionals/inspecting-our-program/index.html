@@ -1,0 +1,388 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Inspecting Our Program #  There are at least two programs you can use to look at programs and debug. First, compile the following program using the command as -g -o main.o main.s. What the -g flag will do is add debug symbols to the executable. The linker command will be the same as before. (ld -o main main.o)
+.global_start  _start: mov r4, #2 @ load 2 into r4  add r4, #6 @ add 6 to r4  Object dump #  The first tool you can use is objdump.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Inspecting Our Program">
+<meta property="og:description" content="Inspecting Our Program #  There are at least two programs you can use to look at programs and debug. First, compile the following program using the command as -g -o main.o main.s. What the -g flag will do is add debug symbols to the executable. The linker command will be the same as before. (ld -o main main.o)
+.global_start  _start: mov r4, #2 @ load 2 into r4  add r4, #6 @ add 6 to r4  Object dump #  The first tool you can use is objdump.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://armasm.com/docs/branches-and-conditionals/inspecting-our-program/"><meta property="article:section" content="docs">
+<title>Inspecting Our Program | ARM Assembly By Example</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.cdf1d3339ad599910ecaf0b922791999eccee31382959665fd94442ac92b40e9.js integrity="sha256-zfHTM5rVmZEOyvC5InkZmezO4xOClZZl/ZREKskrQOk=" crossorigin=anonymous></script>
+<style>.blink_text{animation:.5s blinker linear infinite;color:red}@keyframes blinker{0%{opacity:1}50%{opacity:0}100%{opacity:1}}</style>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>ARM Assembly By Example</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<span>Getting to Hello World</span>
+<ul>
+<li>
+<a href=/docs/getting-to-hello-world/basics/>The Basics</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/exiting/>Program 1: Exiting</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/hello-world/>Program 2: Hello World</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Registers and Memory</span>
+<ul>
+<li>
+<a href=/docs/registers-and-memory/register-overview/>Register Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-overview/>Memory Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/find-the-otter/>Program 3: Find the Otter</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-copy/>Program 4: Memory Copy</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Branches and Conditionals</span>
+<ul>
+<li>
+<a href=/docs/branches-and-conditionals/conditionals/>Conditionals</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/branches-and-loops/>Branches and Loops</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/hello-world-revisited/>Program 5: Hello World Revisited</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/sticky-keyboard/>Program 6: Sticky Keyboard</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/inspecting-our-program/ class=active>Inspecting Our Program</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/cloning-myself/>Program 7: Cloning Myself</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Arithmetic</span>
+<ul>
+<li>
+<a href=/docs/arithmetic/errors-and-tests/>Errors and Tests</a>
+</li>
+<li>
+<a href=/docs/arithmetic/datatypes/>Datatypes</a>
+</li>
+<li>
+<a href=/docs/arithmetic/multiplication/>Multiplication</a>
+</li>
+<li>
+<a href=/docs/arithmetic/itoa/>Program 8: ITOA</a>
+</li>
+<li>
+<a href=/docs/arithmetic/the-stack/>The Stack</a>
+</li>
+<li>
+<a href=/docs/arithmetic/factorial/>Program 9: Factorials</a>
+</li>
+<li>
+<a href=/docs/arithmetic/sum-of-squares/>Program 10: Sum of Squares</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Bit Operations</span>
+<ul>
+<li>
+<a href=/docs/bit-operations/signed-numbers/>Signed Numbers</a>
+</li>
+<li>
+<a href=/docs/bit-operations/positivty/>Program 11: All Positivity</a>
+</li>
+<li>
+<a href=/docs/bit-operations/exorcise/>Exorcise and bicycle orr...</a>
+</li>
+<li>
+<a href=/docs/bit-operations/ok-be-negative/>Program 12: Ok, Be Negative</a>
+</li>
+<li>
+<a href=/docs/bit-operations/xor-cipher/>Program 13: XOR Cipher</a>
+</li>
+<li>
+<a href=/docs/bit-operations/shifting/>Shifting and Rotating</a>
+</li>
+<li>
+<a href=/docs/bit-operations/hex-and-love/>Program 14: Hex and Love</a>
+</li>
+<li>
+<a href=/docs/bit-operations/unsale/>Program 15: The Un-sale</a>
+</li>
+<li>
+<a href=/docs/bit-operations/64-bit-math/>Program 16: 64-bit Math</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Working in Linux</span>
+<ul>
+<li>
+<a href=/docs/working-in-linux/add-the-arguments/>Program 17: Add the Arguments</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-inputs/>Program 18: Add the Inputs</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-file/>Program 19: Add the File</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix A: VFP Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/fpu/overview/>FPU Overview</a>
+</li>
+<li>
+<a href=/docs/fpu/here-to-there/>Program 20: Here to There</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix B: NEON Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/neon/overview/>NEON Overview</a>
+</li>
+<li>
+<a href=/docs/neon/bus-rider/>Program 21: Bus Rider</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Inspecting Our Program</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#object-dump>Object dump</a>
+<ul>
+<li><a href=#machine-code>Machine code</a></li>
+</ul>
+</li>
+<li><a href=#gnu-debugger>GNU Debugger</a>
+<ul>
+<li><a href=#running-a-program>Running a program</a></li>
+<li><a href=#setting-breakpoints>Setting breakpoints</a></li>
+<li><a href=#leaving-breakpoints>Leaving breakpoints</a></li>
+<li><a href=#reading-data>Reading data</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=inspecting-our-program>
+Inspecting Our Program
+<a class=anchor href=#inspecting-our-program>#</a>
+</h1>
+<p>There are at least two programs you can use to look at programs and debug. First,
+compile the following program using the command <code>as -g -o main.o main.s</code>. What
+the -g flag will do is add debug symbols to the executable. The linker command
+will be the same as before. (<code>ld -o main main.o</code>)</p>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-armasm data-lang=armasm><span style=color:#dc322f;font-weight:700>.global</span><span style=color:#268bd2> _start </span>
+
+<span style=color:#268bd2>_start</span>: 
+
+    mov     <span style=color:#cb4b16>r4</span>, #<span style=color:#2aa198;font-weight:700>2</span>      <span style=color:#93a1a1;font-style:italic>@ load 2 into r4 
+</span><span style=color:#93a1a1;font-style:italic></span>    add     <span style=color:#cb4b16>r4</span>, #<span style=color:#2aa198;font-weight:700>6</span>      <span style=color:#93a1a1;font-style:italic>@ add 6 to r4 
+</span><span style=color:#93a1a1;font-style:italic></span>
+</code></pre></div><h2 id=object-dump>
+Object dump
+<a class=anchor href=#object-dump>#</a>
+</h2>
+<p>The first tool you can use is <code>objdump</code>. If you invoke it as <code>objdump -d main</code>
+you can see the actual commands that the assembler wrote to the file. For this
+simple program, the output is:</p>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>pi@raspberrypi:~/hrm$ objdump -d main
+
+main:     file format elf32-littlearm
+
+Disassembly of section .text:
+
+<span style=color:#2aa198;font-weight:700>00010054</span> &lt;_start&gt;:
+   10054:	e3a04002 	mov	r4, <span style=color:#93a1a1;font-style:italic>#2</span>
+   10058:	e2844006 	add	r4, r4, <span style=color:#93a1a1;font-style:italic>#6</span>
+</code></pre></div><p>The file format tells you that the file is an <a href=https://en.wikipedia.org/wiki/Executable_and_Linkable_Format>elf</a>.
+If you recall, the part of the program where all of the instructions are is the
+<code>.text</code> section, so that makes sense. You can then see the <code>_start</code> label and our
+two operations, MOV and ADD.</p>
+<p>This is helpful because sometimes the compiler will not use the same instructions
+that you think it is using. It will sometimes substitute some commands for others
+for various reasons.</p>
+<h3 id=machine-code>
+Machine code
+<a class=anchor href=#machine-code>#</a>
+</h3>
+<p>Welcome to the nitty-gritty. In the end, the processor (and computers in general)
+only understands 1&rsquo;s and 0&rsquo;s. In the above example, under the <code>_start</code> label in
+the first column, you can see the relative address each instruction appears at.
+This makes sense that the first instruction is at 0x10054 and the next at 0x10058
+because each instruction is 32-bits or 4 bytes.</p>
+<p>The next column is the actual machine code instruction but in hex format. If you
+write it in binary, it would look like this:</p>
+<pre tabindex=0><code>11100011 10100000 01000000 00000010
+</code></pre><p>The processor then takes these ones and zeros and understands it as this.</p>
+<table>
+<tr>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+</tr>
+<tr>
+<td>1110</td>
+<td>00</td>
+<td>1</td>
+<td>1101</td>
+<td>0</td>
+<td>0000</td>
+<td>0100</td>
+<td>000000000010</td>
+</tr>
+</table>
+<ol>
+<li>Condition Code: 1110 = Always execute</li>
+<li>Always 00 for data processing</li>
+<li>1 = Immediate operand at end as opposed to a register</li>
+<li>Opcode: 1101 = MOV</li>
+<li>Update CPSR: This would be 1 if we used an instruction with an -s suffix or
+a command such as CMP.</li>
+<li>Rn = 1st operand register: Since MOV only has a destination, this is 0</li>
+<li>Rd = Destination register: 0010 = 4</li>
+<li>Operand2 = This was explained in the very beginning. Because the flag in field
+3 is set, this is an immediate value. 0b10 = 3</li>
+</ol>
+<p>If you want to deep dive into decoding instructions, <a href=https://iitd-plos.github.io/col718/ref/arm-instructionset.pdf>they are all explained in the
+manual</a>.</p>
+<h2 id=gnu-debugger>
+GNU Debugger
+<a class=anchor href=#gnu-debugger>#</a>
+</h2>
+<p>The machine code is great for static analysis, but what if you want to inspect the program
+while it is running? The GNU Debugger (GDB) is a perfect tool to do this. There are
+a multitude of tutorials on how to use this tool as it has been in use for
+almost 35 years. Below is a quick overview but I would highly suggest
+<a href=https://www.gnu.org/software/gdb/documentation/>reading the documentation</a> or
+<a href=https://darkdust.net/files/GDB%20Cheat%20Sheet.pdf>looking at a detailed cheatsheet</a></p>
+<h3 id=running-a-program>
+Running a program
+<a class=anchor href=#running-a-program>#</a>
+</h3>
+<p>To start gdb, just invoke <code>gdb application_name</code>. After it loads, you will see a
+very uneventful <code>gdb></code> prompt. To run the program and pause on the first operation,
+use <code>start</code>. If you would like to add any arguments, just add them after start.
+(e.g., <code>start arg1 arg2</code>) If you have set breakpoints, you can also use <code>r</code> or
+<code>run</code> to skip stopping on the first operation. The <code>q</code> command will exit GDB.</p>
+<h3 id=setting-breakpoints>
+Setting breakpoints
+<a class=anchor href=#setting-breakpoints>#</a>
+</h3>
+<p>If you want to stop on a label, you can simply type <code>break labelname</code> or <code>b labelname</code>.
+If you&rsquo;re trying to set a breakpoint on a certain line, you can use the <code>l</code> command
+to show a list of the next 10 lines of the program. You can then set a breakpoint
+by typing <code>b lineno</code>. To remove a breakpoint, use <code>d</code> as opposed to <code>b</code> with the
+same argument you used to set the breakpoint.</p>
+<h3 id=leaving-breakpoints>
+Leaving breakpoints
+<a class=anchor href=#leaving-breakpoints>#</a>
+</h3>
+<p>After the program is stopped, you can:</p>
+<ul>
+<li>c: continue running until the next breakpoint</li>
+<li>s: Runs the next instruction (steps into function calls)</li>
+<li>n: Runs the next instruction (steps over function calls)</li>
+</ul>
+<h3 id=reading-data>
+Reading data
+<a class=anchor href=#reading-data>#</a>
+</h3>
+<p>There are two primary ways to look at the values your program is using. The first
+is how you would <a href=https://sourceware.org/gdb/current/onlinedocs/gdb/Memory.html><strong>examine</strong> memory</a>.</p>
+<p>The other way is to look at variable values, or in assembly the register values,
+using <a href=https://sourceware.org/gdb/current/onlinedocs/gdb/Data.html#Data>print</a>.</p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#object-dump>Object dump</a>
+<ul>
+<li><a href=#machine-code>Machine code</a></li>
+</ul>
+</li>
+<li><a href=#gnu-debugger>GNU Debugger</a>
+<ul>
+<li><a href=#running-a-program>Running a program</a></li>
+<li><a href=#setting-breakpoints>Setting breakpoints</a></li>
+<li><a href=#leaving-breakpoints>Leaving breakpoints</a></li>
+<li><a href=#reading-data>Reading data</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

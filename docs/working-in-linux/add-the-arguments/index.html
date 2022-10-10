@@ -1,0 +1,319 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="The next couple of exercises are all going to be doing the same thing. Reading 
+inputs, adding them together, and then outputting the result. For this, you will 
+first need to create an ASCII to integer function. (Unsigned integer is fine) 
+Create this in an outside file so you can reuse it.  
+
+For this example, use the below command to invoke your program and output the 
+sum of the arguments. 
+
+```bash 
+./main 33 56 76 45 34 23 54 87 56 334 7556 34332 5643 646 234 64
+```
+">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Program 17: Add the Arguments">
+<meta property="og:description" content="The next couple of exercises are all going to be doing the same thing. Reading 
+inputs, adding them together, and then outputting the result. For this, you will 
+first need to create an ASCII to integer function. (Unsigned integer is fine) 
+Create this in an outside file so you can reuse it.  
+
+For this example, use the below command to invoke your program and output the 
+sum of the arguments. 
+
+```bash 
+./main 33 56 76 45 34 23 54 87 56 334 7556 34332 5643 646 234 64
+```
+">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://armasm.com/docs/working-in-linux/add-the-arguments/"><meta property="article:section" content="docs">
+<title>Program 17: Add the Arguments | ARM Assembly By Example</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.cdf1d3339ad599910ecaf0b922791999eccee31382959665fd94442ac92b40e9.js integrity="sha256-zfHTM5rVmZEOyvC5InkZmezO4xOClZZl/ZREKskrQOk=" crossorigin=anonymous></script>
+<style>.blink_text{animation:.5s blinker linear infinite;color:red}@keyframes blinker{0%{opacity:1}50%{opacity:0}100%{opacity:1}}</style>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>ARM Assembly By Example</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<span>Getting to Hello World</span>
+<ul>
+<li>
+<a href=/docs/getting-to-hello-world/basics/>The Basics</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/exiting/>Program 1: Exiting</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/hello-world/>Program 2: Hello World</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Registers and Memory</span>
+<ul>
+<li>
+<a href=/docs/registers-and-memory/register-overview/>Register Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-overview/>Memory Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/find-the-otter/>Program 3: Find the Otter</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-copy/>Program 4: Memory Copy</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Branches and Conditionals</span>
+<ul>
+<li>
+<a href=/docs/branches-and-conditionals/conditionals/>Conditionals</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/branches-and-loops/>Branches and Loops</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/hello-world-revisited/>Program 5: Hello World Revisited</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/sticky-keyboard/>Program 6: Sticky Keyboard</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/inspecting-our-program/>Inspecting Our Program</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/cloning-myself/>Program 7: Cloning Myself</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Arithmetic</span>
+<ul>
+<li>
+<a href=/docs/arithmetic/errors-and-tests/>Errors and Tests</a>
+</li>
+<li>
+<a href=/docs/arithmetic/datatypes/>Datatypes</a>
+</li>
+<li>
+<a href=/docs/arithmetic/multiplication/>Multiplication</a>
+</li>
+<li>
+<a href=/docs/arithmetic/itoa/>Program 8: ITOA</a>
+</li>
+<li>
+<a href=/docs/arithmetic/the-stack/>The Stack</a>
+</li>
+<li>
+<a href=/docs/arithmetic/factorial/>Program 9: Factorials</a>
+</li>
+<li>
+<a href=/docs/arithmetic/sum-of-squares/>Program 10: Sum of Squares</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Bit Operations</span>
+<ul>
+<li>
+<a href=/docs/bit-operations/signed-numbers/>Signed Numbers</a>
+</li>
+<li>
+<a href=/docs/bit-operations/positivty/>Program 11: All Positivity</a>
+</li>
+<li>
+<a href=/docs/bit-operations/exorcise/>Exorcise and bicycle orr...</a>
+</li>
+<li>
+<a href=/docs/bit-operations/ok-be-negative/>Program 12: Ok, Be Negative</a>
+</li>
+<li>
+<a href=/docs/bit-operations/xor-cipher/>Program 13: XOR Cipher</a>
+</li>
+<li>
+<a href=/docs/bit-operations/shifting/>Shifting and Rotating</a>
+</li>
+<li>
+<a href=/docs/bit-operations/hex-and-love/>Program 14: Hex and Love</a>
+</li>
+<li>
+<a href=/docs/bit-operations/unsale/>Program 15: The Un-sale</a>
+</li>
+<li>
+<a href=/docs/bit-operations/64-bit-math/>Program 16: 64-bit Math</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Working in Linux</span>
+<ul>
+<li>
+<a href=/docs/working-in-linux/add-the-arguments/ class=active>Program 17: Add the Arguments</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-inputs/>Program 18: Add the Inputs</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-file/>Program 19: Add the File</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix A: VFP Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/fpu/overview/>FPU Overview</a>
+</li>
+<li>
+<a href=/docs/fpu/here-to-there/>Program 20: Here to There</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix B: NEON Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/neon/overview/>NEON Overview</a>
+</li>
+<li>
+<a href=/docs/neon/bus-rider/>Program 21: Bus Rider</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Program 17: Add the Arguments</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#reading-program-arguments>Reading program arguments</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown>
+<h1>
+<a href=/docs/working-in-linux/add-the-arguments/ style=color:#000>Program 17: Add the Arguments</a>
+</h1>
+<h2 id=reading-program-arguments>
+Reading program arguments
+<a class=anchor href=#reading-program-arguments>#</a>
+</h2>
+<p>The first type of interaction you will learn about is how arguments are passed to
+a program from the Linux command line. To understand/visualize this, I HIGHLY
+recommend installing an extension such as <a href=https://gef.readthedocs.io/en/master/>GEF</a>
+for the GNU debugger.</p>
+<p>Take one of the programs you have created and start it in GDB. When you do this,
+set a break point at <code>_start</code> and run it using the command: <code>r arg1 arg2 arg3</code>.
+This will start the program running, pause on the first line and pass three arguments
+to the program.</p>
+<p>If you&rsquo;re using an extension, you should easily see the stack.</p>
+<p><img src=/img/stack-vis.png alt="Stack Visualization"></p>
+<p>The first address (0x7efffc60) has the value of 0x4. This is the number of arguments
+passed into the program from the command line. You will also notice the $sp label,
+which refers to which address the stack pointer is pointing to.</p>
+<p>The first argument passed in is always the path of the program running. In this
+example, the value stored at address 0x7efffc64 is the starting address of the <strong>null
+terminated ASCII string</strong>. Also note that the argument list is null terminated.
+(Address 0x7efffc74) Every other argument is the same. The value stored on
+the stack is the address of where the value is in memory. It is important to also
+remember that all of these will be passed in as they are typed. (i.e., ASCII and
+not integers) You CAN use escape codes or pipe in information from another program,
+but when calling from the CLI, you&rsquo;re almost always going to be working with arguments
+in ASCII.</p>
+<hr>
+<h2>Program 17: Add the Arguments Video </h2>
+<div style=position:relative;padding-bottom:56.25%;height:0;overflow:hidden>
+<iframe src=https://www.youtube.com/embed/yYi2Bs-iAHU style=position:absolute;top:0;left:0;width:100%;height:100%;border:0 allowfullscreen title="YouTube Video"></iframe>
+</div>
+<div style=width:100%;display:flex;flex-direction:column>
+<div style="flex:1 0;padding-bottom:16px">
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Description of Program</div>
+<div><p>The next couple of exercises are all going to be doing the same thing. Reading
+inputs, adding them together, and then outputting the result. For this, you will
+first need to create an ASCII to integer function. (Unsigned integer is fine)
+Create this in an outside file so you can reuse it.</p>
+<p>For this example, use the below command to invoke your program and output the
+sum of the arguments.</p>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>./main <span style=color:#2aa198;font-weight:700>33</span> <span style=color:#2aa198;font-weight:700>56</span> <span style=color:#2aa198;font-weight:700>76</span> <span style=color:#2aa198;font-weight:700>45</span> <span style=color:#2aa198;font-weight:700>34</span> <span style=color:#2aa198;font-weight:700>23</span> <span style=color:#2aa198;font-weight:700>54</span> <span style=color:#2aa198;font-weight:700>87</span> <span style=color:#2aa198;font-weight:700>56</span> <span style=color:#2aa198;font-weight:700>334</span> <span style=color:#2aa198;font-weight:700>7556</span> <span style=color:#2aa198;font-weight:700>34332</span> <span style=color:#2aa198;font-weight:700>5643</span> <span style=color:#2aa198;font-weight:700>646</span> <span style=color:#2aa198;font-weight:700>234</span> <span style=color:#2aa198;font-weight:700>64</span>
+</code></pre></div></div>
+</div>
+</div>
+<div style=display:flex;flex-direction:row>
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Template/Input</div>
+<div>
+<a href=https://github.com/gpit2286/armasm-by-example/tree/master/17-add-the-arguments/template>Github</a>
+</div>
+</div>
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Completed Code</div>
+<div><a href=https://github.com/gpit2286/armasm-by-example/tree/master/17-add-the-arguments>Github</a></div>
+</div>
+<div style="display:flex;flex:2 0 auto;flex-direction:column">
+<div style=font-weight:700>Expected Output</div>
+<div>
+<pre style=margin:0;padding-top:4px;width:auto>49273</pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#reading-program-arguments>Reading program arguments</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

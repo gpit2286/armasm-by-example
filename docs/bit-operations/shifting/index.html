@@ -1,0 +1,312 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Shifting and Rotating #  Shifting and rotating refer to the process of taking the bits of a number and moving them either to the left or the right. The ARM processor has a barrel shifter included in the hardware which allows you to shift the flexible operand2.
+Rotating #  Rotating is the operation where when bits get to the end of the register, they move to the other side.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Shifting and Rotating">
+<meta property="og:description" content="Shifting and Rotating #  Shifting and rotating refer to the process of taking the bits of a number and moving them either to the left or the right. The ARM processor has a barrel shifter included in the hardware which allows you to shift the flexible operand2.
+Rotating #  Rotating is the operation where when bits get to the end of the register, they move to the other side.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://armasm.com/docs/bit-operations/shifting/"><meta property="article:section" content="docs">
+<title>Shifting and Rotating | ARM Assembly By Example</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.cdf1d3339ad599910ecaf0b922791999eccee31382959665fd94442ac92b40e9.js integrity="sha256-zfHTM5rVmZEOyvC5InkZmezO4xOClZZl/ZREKskrQOk=" crossorigin=anonymous></script>
+<style>.blink_text{animation:.5s blinker linear infinite;color:red}@keyframes blinker{0%{opacity:1}50%{opacity:0}100%{opacity:1}}</style>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>ARM Assembly By Example</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<span>Getting to Hello World</span>
+<ul>
+<li>
+<a href=/docs/getting-to-hello-world/basics/>The Basics</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/exiting/>Program 1: Exiting</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/hello-world/>Program 2: Hello World</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Registers and Memory</span>
+<ul>
+<li>
+<a href=/docs/registers-and-memory/register-overview/>Register Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-overview/>Memory Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/find-the-otter/>Program 3: Find the Otter</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-copy/>Program 4: Memory Copy</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Branches and Conditionals</span>
+<ul>
+<li>
+<a href=/docs/branches-and-conditionals/conditionals/>Conditionals</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/branches-and-loops/>Branches and Loops</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/hello-world-revisited/>Program 5: Hello World Revisited</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/sticky-keyboard/>Program 6: Sticky Keyboard</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/inspecting-our-program/>Inspecting Our Program</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/cloning-myself/>Program 7: Cloning Myself</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Arithmetic</span>
+<ul>
+<li>
+<a href=/docs/arithmetic/errors-and-tests/>Errors and Tests</a>
+</li>
+<li>
+<a href=/docs/arithmetic/datatypes/>Datatypes</a>
+</li>
+<li>
+<a href=/docs/arithmetic/multiplication/>Multiplication</a>
+</li>
+<li>
+<a href=/docs/arithmetic/itoa/>Program 8: ITOA</a>
+</li>
+<li>
+<a href=/docs/arithmetic/the-stack/>The Stack</a>
+</li>
+<li>
+<a href=/docs/arithmetic/factorial/>Program 9: Factorials</a>
+</li>
+<li>
+<a href=/docs/arithmetic/sum-of-squares/>Program 10: Sum of Squares</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Bit Operations</span>
+<ul>
+<li>
+<a href=/docs/bit-operations/signed-numbers/>Signed Numbers</a>
+</li>
+<li>
+<a href=/docs/bit-operations/positivty/>Program 11: All Positivity</a>
+</li>
+<li>
+<a href=/docs/bit-operations/exorcise/>Exorcise and bicycle orr...</a>
+</li>
+<li>
+<a href=/docs/bit-operations/ok-be-negative/>Program 12: Ok, Be Negative</a>
+</li>
+<li>
+<a href=/docs/bit-operations/xor-cipher/>Program 13: XOR Cipher</a>
+</li>
+<li>
+<a href=/docs/bit-operations/shifting/ class=active>Shifting and Rotating</a>
+</li>
+<li>
+<a href=/docs/bit-operations/hex-and-love/>Program 14: Hex and Love</a>
+</li>
+<li>
+<a href=/docs/bit-operations/unsale/>Program 15: The Un-sale</a>
+</li>
+<li>
+<a href=/docs/bit-operations/64-bit-math/>Program 16: 64-bit Math</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Working in Linux</span>
+<ul>
+<li>
+<a href=/docs/working-in-linux/add-the-arguments/>Program 17: Add the Arguments</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-inputs/>Program 18: Add the Inputs</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-file/>Program 19: Add the File</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix A: VFP Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/fpu/overview/>FPU Overview</a>
+</li>
+<li>
+<a href=/docs/fpu/here-to-there/>Program 20: Here to There</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix B: NEON Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/neon/overview/>NEON Overview</a>
+</li>
+<li>
+<a href=/docs/neon/bus-rider/>Program 21: Bus Rider</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Shifting and Rotating</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#rotating>Rotating</a>
+<ul>
+<li><a href=#ror-operation>ROR operation</a></li>
+<li><a href=#rrx-operation>RRX operation</a></li>
+</ul>
+</li>
+<li><a href=#shifts>Shifts</a>
+<ul>
+<li><a href=#logical-shifts>Logical shifts</a></li>
+<li><a href=#arithmetic-shift>Arithmetic shift</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=shifting-and-rotating>
+Shifting and Rotating
+<a class=anchor href=#shifting-and-rotating>#</a>
+</h1>
+<p>Shifting and rotating refer to the process of taking the bits of a number and moving them
+either to the left or the right. The ARM processor has a <em>barrel shifter</em>
+included in the hardware which allows you to shift the flexible operand2.</p>
+<h2 id=rotating>
+Rotating
+<a class=anchor href=#rotating>#</a>
+</h2>
+<p>Rotating is the operation where when bits get to the end of the register,
+they move to the other side. There are two rotate instructions.</p>
+<h3 id=ror-operation>
+ROR operation
+<a class=anchor href=#ror-operation>#</a>
+</h3>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-armasm data-lang=armasm>    mov     <span style=color:#cb4b16>r0</span>, #<span style=color:#2aa198;font-weight:700>0b11001100</span>     <span style=color:#93a1a1;font-style:italic>@ r0 = 00000000 00000000 00000000 11111111 
+</span><span style=color:#93a1a1;font-style:italic></span>    ror     <span style=color:#cb4b16>r0</span>, <span style=color:#cb4b16>r0</span>, #<span style=color:#2aa198;font-weight:700>2</span>          <span style=color:#93a1a1;font-style:italic>@ shift to the right 2 
+</span><span style=color:#93a1a1;font-style:italic></span>                                <span style=color:#93a1a1;font-style:italic>@ r0 = 11000000 00000000 00000000 00111111
+</span></code></pre></div><h3 id=rrx-operation>
+RRX operation
+<a class=anchor href=#rrx-operation>#</a>
+</h3>
+<p>The RRX operation functions exactly like ROR, but instead of a 32-bit register, it
+treats the carry flag in the CPSR as a 33rd bit. It, however, can only move one bit
+at a time.</p>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-armasm data-lang=armasm>    mov     <span style=color:#cb4b16>r0</span>, #<span style=color:#2aa198;font-weight:700>0b11001100</span>     <span style=color:#93a1a1;font-style:italic>@ r0 = 00000000 00000000 00000000 11111111 C = 0 
+</span><span style=color:#93a1a1;font-style:italic></span>    rrx     <span style=color:#cb4b16>r0</span>, <span style=color:#cb4b16>r0</span>              <span style=color:#93a1a1;font-style:italic>@ shift to the right 1
+</span><span style=color:#93a1a1;font-style:italic></span>                                <span style=color:#93a1a1;font-style:italic>@ r0 = 00000000 00000000 00000000 01111111 C = 1
+</span><span style=color:#93a1a1;font-style:italic></span>                                <span style=color:#93a1a1;font-style:italic>@ if carry were 1 during move operation, it would 
+</span><span style=color:#93a1a1;font-style:italic></span>                                <span style=color:#93a1a1;font-style:italic>@ have ended up in bit 31
+</span><span style=color:#93a1a1;font-style:italic></span>
+</code></pre></div><h2 id=shifts>
+Shifts
+<a class=anchor href=#shifts>#</a>
+</h2>
+<h3 id=logical-shifts>
+Logical shifts
+<a class=anchor href=#logical-shifts>#</a>
+</h3>
+<p>The logical shift right (LSR) and logical shift left (LSL) shift bits and move
+the last removed flag to the carry bit of the CPSR if the s suffix is added.</p>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-armasm data-lang=armasm>    mov     <span style=color:#cb4b16>r0</span>, #<span style=color:#2aa198;font-weight:700>0xff00ff00</span>     <span style=color:#93a1a1;font-style:italic>@ r0 = 11111111 00000000 11111111 00000000  C=0 
+</span><span style=color:#93a1a1;font-style:italic></span>    lsls    <span style=color:#cb4b16>r0</span>, <span style=color:#cb4b16>r0</span>, #<span style=color:#2aa198;font-weight:700>10</span>         <span style=color:#93a1a1;font-style:italic>@ r0 = 00000011 11111100 00000000 00000000  C=0
+</span><span style=color:#93a1a1;font-style:italic></span>
+    mov     <span style=color:#cb4b16>r1</span>, #<span style=color:#2aa198;font-weight:700>0xff00ff00</span>     <span style=color:#93a1a1;font-style:italic>@ r0 = 11111111 00000000 11111111 00000000  C=0 
+</span><span style=color:#93a1a1;font-style:italic></span>    lsrs    <span style=color:#cb4b16>r1</span>, <span style=color:#cb4b16>r1</span>, #<span style=color:#2aa198;font-weight:700>10</span>         <span style=color:#93a1a1;font-style:italic>@ r0 = 00000000 00111111 11000000 00111111  C=1
+</span></code></pre></div><h3 id=arithmetic-shift>
+Arithmetic shift
+<a class=anchor href=#arithmetic-shift>#</a>
+</h3>
+<p>You may see the problem with shifting &ndash; it always moves zeros into the register.
+If you are still thinking about negative numbers, you can see why this would be an issue.
+If you add a zero to the front of a &ldquo;negative&rdquo; number, then it&rsquo;s not &ldquo;negative&rdquo; anymore.
+Because of this, there is also a arithmetic shift right (ASR) which will preserve the sign
+by copying the 31st bit and not just zero.</p>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-armasm data-lang=armasm>    mov     <span style=color:#cb4b16>r0</span>, #-<span style=color:#2aa198;font-weight:700>23</span>        <span style=color:#93a1a1;font-style:italic>@ r0 = 11111111 11111111 11111111 11101001 C=0 
+</span><span style=color:#93a1a1;font-style:italic></span>    asr     <span style=color:#cb4b16>r0</span>, <span style=color:#cb4b16>r0</span>, #<span style=color:#2aa198;font-weight:700>4</span>      <span style=color:#93a1a1;font-style:italic>@ r0 = 11111111 11111111 11111111 11111110 C=1 
+</span></code></pre></div></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#rotating>Rotating</a>
+<ul>
+<li><a href=#ror-operation>ROR operation</a></li>
+<li><a href=#rrx-operation>RRX operation</a></li>
+</ul>
+</li>
+<li><a href=#shifts>Shifts</a>
+<ul>
+<li><a href=#logical-shifts>Logical shifts</a></li>
+<li><a href=#arithmetic-shift>Arithmetic shift</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

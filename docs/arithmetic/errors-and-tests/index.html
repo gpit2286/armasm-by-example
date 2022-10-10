@@ -1,0 +1,303 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Errors and Tests #  Both of these topics are important and not explicitly covered in this tutorial. However, the sooner you start thinking about them, the better off you will be when you need/want to include them in your program. They are not presented here to give answers, only to make sure you are considering them.  Error handling #  One of the two things that you miss in this series of exercises is error handling.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Errors and Tests">
+<meta property="og:description" content="Errors and Tests #  Both of these topics are important and not explicitly covered in this tutorial. However, the sooner you start thinking about them, the better off you will be when you need/want to include them in your program. They are not presented here to give answers, only to make sure you are considering them.  Error handling #  One of the two things that you miss in this series of exercises is error handling.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://armasm.com/docs/arithmetic/errors-and-tests/"><meta property="article:section" content="docs">
+<title>Errors and Tests | ARM Assembly By Example</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.cdf1d3339ad599910ecaf0b922791999eccee31382959665fd94442ac92b40e9.js integrity="sha256-zfHTM5rVmZEOyvC5InkZmezO4xOClZZl/ZREKskrQOk=" crossorigin=anonymous></script>
+<style>.blink_text{animation:.5s blinker linear infinite;color:red}@keyframes blinker{0%{opacity:1}50%{opacity:0}100%{opacity:1}}</style>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>ARM Assembly By Example</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<span>Getting to Hello World</span>
+<ul>
+<li>
+<a href=/docs/getting-to-hello-world/basics/>The Basics</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/exiting/>Program 1: Exiting</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/hello-world/>Program 2: Hello World</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Registers and Memory</span>
+<ul>
+<li>
+<a href=/docs/registers-and-memory/register-overview/>Register Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-overview/>Memory Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/find-the-otter/>Program 3: Find the Otter</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-copy/>Program 4: Memory Copy</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Branches and Conditionals</span>
+<ul>
+<li>
+<a href=/docs/branches-and-conditionals/conditionals/>Conditionals</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/branches-and-loops/>Branches and Loops</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/hello-world-revisited/>Program 5: Hello World Revisited</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/sticky-keyboard/>Program 6: Sticky Keyboard</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/inspecting-our-program/>Inspecting Our Program</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/cloning-myself/>Program 7: Cloning Myself</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Arithmetic</span>
+<ul>
+<li>
+<a href=/docs/arithmetic/errors-and-tests/ class=active>Errors and Tests</a>
+</li>
+<li>
+<a href=/docs/arithmetic/datatypes/>Datatypes</a>
+</li>
+<li>
+<a href=/docs/arithmetic/multiplication/>Multiplication</a>
+</li>
+<li>
+<a href=/docs/arithmetic/itoa/>Program 8: ITOA</a>
+</li>
+<li>
+<a href=/docs/arithmetic/the-stack/>The Stack</a>
+</li>
+<li>
+<a href=/docs/arithmetic/factorial/>Program 9: Factorials</a>
+</li>
+<li>
+<a href=/docs/arithmetic/sum-of-squares/>Program 10: Sum of Squares</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Bit Operations</span>
+<ul>
+<li>
+<a href=/docs/bit-operations/signed-numbers/>Signed Numbers</a>
+</li>
+<li>
+<a href=/docs/bit-operations/positivty/>Program 11: All Positivity</a>
+</li>
+<li>
+<a href=/docs/bit-operations/exorcise/>Exorcise and bicycle orr...</a>
+</li>
+<li>
+<a href=/docs/bit-operations/ok-be-negative/>Program 12: Ok, Be Negative</a>
+</li>
+<li>
+<a href=/docs/bit-operations/xor-cipher/>Program 13: XOR Cipher</a>
+</li>
+<li>
+<a href=/docs/bit-operations/shifting/>Shifting and Rotating</a>
+</li>
+<li>
+<a href=/docs/bit-operations/hex-and-love/>Program 14: Hex and Love</a>
+</li>
+<li>
+<a href=/docs/bit-operations/unsale/>Program 15: The Un-sale</a>
+</li>
+<li>
+<a href=/docs/bit-operations/64-bit-math/>Program 16: 64-bit Math</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Working in Linux</span>
+<ul>
+<li>
+<a href=/docs/working-in-linux/add-the-arguments/>Program 17: Add the Arguments</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-inputs/>Program 18: Add the Inputs</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-file/>Program 19: Add the File</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix A: VFP Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/fpu/overview/>FPU Overview</a>
+</li>
+<li>
+<a href=/docs/fpu/here-to-there/>Program 20: Here to There</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix B: NEON Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/neon/overview/>NEON Overview</a>
+</li>
+<li>
+<a href=/docs/neon/bus-rider/>Program 21: Bus Rider</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Errors and Tests</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#error-handling>Error handling</a></li>
+<li><a href=#testing-assembly>Testing assembly</a>
+<ul>
+<li><a href=#testing-setup-example>Testing setup example</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=errors-and-tests>
+Errors and Tests
+<a class=anchor href=#errors-and-tests>#</a>
+</h1>
+<blockquote class="book-hint info">
+Both of these topics are important and not explicitly covered in this tutorial.
+However, the sooner you start thinking about them, the better off you will be
+when you need/want to include them in your program. They are not presented here
+to give answers, only to make sure you are considering them.
+</blockquote>
+<h2 id=error-handling>
+Error handling
+<a class=anchor href=#error-handling>#</a>
+</h2>
+<p>One of the two things that you miss in this series of exercises is error handling.
+The Linux kernel allows you to specify exit codes when we exit a program. In the regard, it
+is easy for you to keep a table of possible errors and encode those exit numbers
+inside of your program. After that, you start entering the rabbit hole of what other information do you want
+to give?</p>
+<p>Pretend you wrote a program that takes two arguments at runtime. The first argument
+should be a number and the second argument should be a string. If that first argument
+isn&rsquo;t a number you could:</p>
+<ul>
+<li>do nothing and the program panics (crashes)</li>
+<li>just exit the program with a specific error code</li>
+<li>exit the program with an error code, but call an error routine that will print
+out a message saying what the error was</li>
+</ul>
+<p>Assume that the number is a number. Is it in range? Can your program handle the number
+if it&rsquo;s zero? There are all kinds of problems that can arise, and they need to be
+planned for eventually. These considerations become even more prevalent if you&rsquo;re
+writing a program for an embedded system. Do you blink an LED? Make a buzzer sound?
+How do you differentiate that LED blink or buzzer sound from one error to another?</p>
+<p>Every programming language has generally come up with some system of error handling.
+But when the language itself doesn&rsquo;t, you need to be very mindful as well as
+deciding how to mitigate those errors when they do occur.</p>
+<h2 id=testing-assembly>
+Testing assembly
+<a class=anchor href=#testing-assembly>#</a>
+</h2>
+<p>The other part that is not addresses in this set of exercises but should be mentioned
+is testing your code. As your program gets bigger and bigger and includes more and more
+subroutines, testing becomes more important.</p>
+<p>The main premise of a testing suite is that you have a test runner that runs a series
+of mini-programs that assert that shared functions come back with expected results.
+There is also end-to-end testing that makes sure that the whole program works
+together in &ldquo;real world&rdquo; situations.</p>
+<p>As you might have guessed, there isn&rsquo;t really a &ldquo;test suite&rdquo; that is made to work with
+assembly out of the box. There are generic test runners, such as <a href=https://github.com/sstephenson/bats>BATS</a>,
+where you can create a separate test program, build them automatically with a make file,
+and then test them.</p>
+<h3 id=testing-setup-example>
+Testing setup example
+<a class=anchor href=#testing-setup-example>#</a>
+</h3>
+<ul>
+<li>You create a function that adds 2 to a number and returns the result</li>
+<li>You import that function into a file that only has test cases</li>
+<li>If the test result doesn&rsquo;t match the expected result, send error code xxx where
+xxx is defined in the test file</li>
+<li>Run the test file in a test runner. If it exits with no error, then all the
+tests passes. If there was an error, use the test file, the returned error code,
+and a debugging program like GDB to find what went wrong and fix it</li>
+</ul>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#error-handling>Error handling</a></li>
+<li><a href=#testing-assembly>Testing assembly</a>
+<ul>
+<li><a href=#testing-setup-example>Testing setup example</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

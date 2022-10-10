@@ -1,0 +1,420 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="The Basics #  Dependency Check #  The first thing that we need to do is check to make sure that we have all of the correct tools that we need. The below table will tell you the program name, the command to check to make sure that it is installed, and what package includes the tool if it isn&rsquo;t present.
+   Program Name Check Command Required Package     GNU Assembler as --version binutils   GNU Linker ld --version binutils   GNU Debugger gdb --version gdb   Make make --version make    Syntax #  The first part of writing programs is understanding the syntax of the language.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="The Basics">
+<meta property="og:description" content="The Basics #  Dependency Check #  The first thing that we need to do is check to make sure that we have all of the correct tools that we need. The below table will tell you the program name, the command to check to make sure that it is installed, and what package includes the tool if it isn&rsquo;t present.
+   Program Name Check Command Required Package     GNU Assembler as --version binutils   GNU Linker ld --version binutils   GNU Debugger gdb --version gdb   Make make --version make    Syntax #  The first part of writing programs is understanding the syntax of the language.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://armasm.com/docs/getting-to-hello-world/basics/"><meta property="article:section" content="docs">
+<title>The Basics | ARM Assembly By Example</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.cdf1d3339ad599910ecaf0b922791999eccee31382959665fd94442ac92b40e9.js integrity="sha256-zfHTM5rVmZEOyvC5InkZmezO4xOClZZl/ZREKskrQOk=" crossorigin=anonymous></script>
+<style>.blink_text{animation:.5s blinker linear infinite;color:red}@keyframes blinker{0%{opacity:1}50%{opacity:0}100%{opacity:1}}</style>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>ARM Assembly By Example</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<span>Getting to Hello World</span>
+<ul>
+<li>
+<a href=/docs/getting-to-hello-world/basics/ class=active>The Basics</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/exiting/>Program 1: Exiting</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/hello-world/>Program 2: Hello World</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Registers and Memory</span>
+<ul>
+<li>
+<a href=/docs/registers-and-memory/register-overview/>Register Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-overview/>Memory Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/find-the-otter/>Program 3: Find the Otter</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-copy/>Program 4: Memory Copy</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Branches and Conditionals</span>
+<ul>
+<li>
+<a href=/docs/branches-and-conditionals/conditionals/>Conditionals</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/branches-and-loops/>Branches and Loops</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/hello-world-revisited/>Program 5: Hello World Revisited</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/sticky-keyboard/>Program 6: Sticky Keyboard</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/inspecting-our-program/>Inspecting Our Program</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/cloning-myself/>Program 7: Cloning Myself</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Arithmetic</span>
+<ul>
+<li>
+<a href=/docs/arithmetic/errors-and-tests/>Errors and Tests</a>
+</li>
+<li>
+<a href=/docs/arithmetic/datatypes/>Datatypes</a>
+</li>
+<li>
+<a href=/docs/arithmetic/multiplication/>Multiplication</a>
+</li>
+<li>
+<a href=/docs/arithmetic/itoa/>Program 8: ITOA</a>
+</li>
+<li>
+<a href=/docs/arithmetic/the-stack/>The Stack</a>
+</li>
+<li>
+<a href=/docs/arithmetic/factorial/>Program 9: Factorials</a>
+</li>
+<li>
+<a href=/docs/arithmetic/sum-of-squares/>Program 10: Sum of Squares</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Bit Operations</span>
+<ul>
+<li>
+<a href=/docs/bit-operations/signed-numbers/>Signed Numbers</a>
+</li>
+<li>
+<a href=/docs/bit-operations/positivty/>Program 11: All Positivity</a>
+</li>
+<li>
+<a href=/docs/bit-operations/exorcise/>Exorcise and bicycle orr...</a>
+</li>
+<li>
+<a href=/docs/bit-operations/ok-be-negative/>Program 12: Ok, Be Negative</a>
+</li>
+<li>
+<a href=/docs/bit-operations/xor-cipher/>Program 13: XOR Cipher</a>
+</li>
+<li>
+<a href=/docs/bit-operations/shifting/>Shifting and Rotating</a>
+</li>
+<li>
+<a href=/docs/bit-operations/hex-and-love/>Program 14: Hex and Love</a>
+</li>
+<li>
+<a href=/docs/bit-operations/unsale/>Program 15: The Un-sale</a>
+</li>
+<li>
+<a href=/docs/bit-operations/64-bit-math/>Program 16: 64-bit Math</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Working in Linux</span>
+<ul>
+<li>
+<a href=/docs/working-in-linux/add-the-arguments/>Program 17: Add the Arguments</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-inputs/>Program 18: Add the Inputs</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-file/>Program 19: Add the File</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix A: VFP Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/fpu/overview/>FPU Overview</a>
+</li>
+<li>
+<a href=/docs/fpu/here-to-there/>Program 20: Here to There</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix B: NEON Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/neon/overview/>NEON Overview</a>
+</li>
+<li>
+<a href=/docs/neon/bus-rider/>Program 21: Bus Rider</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>The Basics</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#dependency-check>Dependency Check</a></li>
+<li><a href=#syntax>Syntax</a>
+<ul>
+<li><a href=#mnemonics>Mnemonics</a></li>
+<li><a href=#registers>Registers</a></li>
+<li><a href=#immediate-values>Immediate Values</a></li>
+</ul>
+</li>
+<li><a href=#file-format>File Format</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=the-basics>
+The Basics
+<a class=anchor href=#the-basics>#</a>
+</h1>
+<h2 id=dependency-check>
+Dependency Check
+<a class=anchor href=#dependency-check>#</a>
+</h2>
+<p>The first thing that we need to do is check to make sure that we have all of the
+correct tools that we need. The below table will tell you the program name, the
+command to check to make sure that it is installed, and what package includes the
+tool if it isn&rsquo;t present.</p>
+<table>
+<thead>
+<tr>
+<th>Program Name</th>
+<th>Check Command</th>
+<th>Required Package</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GNU Assembler</td>
+<td><code>as --version</code></td>
+<td>binutils</td>
+</tr>
+<tr>
+<td>GNU Linker</td>
+<td><code>ld --version</code></td>
+<td>binutils</td>
+</tr>
+<tr>
+<td>GNU Debugger</td>
+<td><code>gdb --version</code></td>
+<td>gdb</td>
+</tr>
+<tr>
+<td>Make</td>
+<td><code>make --version</code></td>
+<td>make</td>
+</tr>
+</tbody>
+</table>
+<h2 id=syntax>
+Syntax
+<a class=anchor href=#syntax>#</a>
+</h2>
+<p>The first part of writing programs is understanding the syntax
+of the language. Assembly is, maybe unsurprisingly, a little less descriptive
+than any other language you&rsquo;ve worked with before.</p>
+<h3 id=mnemonics>
+Mnemonics
+<a class=anchor href=#mnemonics>#</a>
+</h3>
+<p>Since we are using a language that interacts almost directly with the processor,
+there are two ways to write the commands. The first way is the manually write
+every 32-bit command in binary or hex. You can imagine that this is not sustainable.
+The second way is by using mnemonics that represent those 32-bit instructions.</p>
+<p>There are essentially three types of mnemonics or opcodes. (Rd = destination, Rn = source,
+op2 can be a register or an immediate)</p>
+<ul>
+<li>Some opcodes don&rsquo;t produce a result
+<ul>
+<li><code>opcode Rn, op2</code></li>
+</ul>
+</li>
+<li>Some opcodes only deal with single registers
+<ul>
+<li><code>opcode Rd, op2</code></li>
+</ul>
+</li>
+<li>Some opcodes produce a result from a source
+<ul>
+<li><code>opcode Rd, Rn, op2</code></li>
+</ul>
+</li>
+</ul>
+<h3 id=registers>
+Registers
+<a class=anchor href=#registers>#</a>
+</h3>
+<p>If I asked you to name the places that data &ldquo;visits&rdquo; inside of a computer, you would
+probably mention the hard drive/SSD and the RAM (or &ldquo;memory&rdquo;). There are also places
+inside the processor itself that the data &ldquo;visits.&rdquo; One of those places are the registers.
+There are some registers that are used for general purpose and some that are
+used for specific reasons. For now, just know that the registers are the places
+inside the register where we can actually do operations on a piece of data. They
+are represented as <code>r0</code> - <code>r15</code>.</p>
+<h3 id=immediate-values>
+Immediate Values
+<a class=anchor href=#immediate-values>#</a>
+</h3>
+<p>Assembly doesn&rsquo;t have the idea of a constant or really even variable assignment.
+In many programming languages we can think of a constant as a value that isn&rsquo;t
+allowed to change. There is no such safeguards in assembly. So how do we write
+the values that we want to use that are not calculated? Immediate values are the answer.</p>
+<p>If we think about an operation that the processor consumes, there is a lot of data
+that gets thrown into those 32-bit. Because of this, immediate values are, by space
+alone, limited to numbers 0-255 (unsigned). They are entered with a # sign followed
+by a char in single quotes or a number in binary, octal, decimal, or hexadecimal.
+So we can always use:</p>
+<ul>
+<li>An integer from 0 - 255</li>
+<li>A char value from ASCII by enclosing it in single quotes</li>
+</ul>
+<p>As you can see, this is quite limited. So the designers of the processor added a
+barrel shifter into the CPU and we can then take that base range (0-255) and shift
+it. All of these values would be possible:</p>
+<ul>
+<li>0x000000FF: 255, no shift</li>
+<li>0x00FF0000: 255, left shift 16 for a value of 16,711,680</li>
+<li>0x000FF000: 255, left shift 12 for a value of 1,044,480</li>
+</ul>
+<p>These would NOT be possible:</p>
+<ul>
+<li>0x00234500: Rotated value (0x2345) too large</li>
+<li>0x000007F8: Rotated value (0xFF) rotated an odd number of places</li>
+<li>0x000001FF: Base value too large</li>
+</ul>
+<p>What if we really really really needed 0x00FF0001? Compilers will transparently &ldquo;fix&rdquo; this for you by
+loading this value into memory when the program is loaded and load it into the
+register when needed. The downfall of this is that it takes an extra operation or two.
+The good thing? It only really translates into 1/500,000 of a second more or less.</p>
+<h2 id=file-format>
+File Format
+<a class=anchor href=#file-format>#</a>
+</h2>
+<p>Unlike many programming languages, the format fo the file is quite simple. There
+is a &ldquo;main&rdquo; function that is labeled as <code>_start</code>. Every program needs to have one
+and only one <code>_start</code>. This is, however, not an actual function but actually just
+a label. (If you&rsquo;ve ever had GOTO nightmares, welcome back.)</p>
+<p>There also needs to be two sections in the code. The first is <code>.text</code>. This tells
+the compiler where the operations live. Also, anything that is written in this
+section will never change when the program is running. The <code>.text</code> directive is
+usually omitted as the compiler assumes its existence. The other section is the
+<code>.data</code> section. This loads values that cannot be entered as immediate values and
+can reserve space for our program to use during execution.</p>
+<p>The last global directive is <code>.global</code>. This exposes labels from the code to the
+compiler and linker. For now, we will just be exposing the <code>_start</code> label. Below
+is an example source code file that will run, but produce no results.</p>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-armasm data-lang=armasm><span style=color:#93a1a1;font-style:italic>@ At signs are the comment marker. In assembly, you&#39;ll 
+</span><span style=color:#93a1a1;font-style:italic>@ use these on almost every line. They are the only way 
+</span><span style=color:#93a1a1;font-style:italic>@ to keep things logical. 
+</span><span style=color:#93a1a1;font-style:italic></span>
+<span style=color:#93a1a1;font-style:italic>@ The next line tells the linker that a function is available 
+</span><span style=color:#93a1a1;font-style:italic>@ in a file. 
+</span><span style=color:#93a1a1;font-style:italic></span><span style=color:#dc322f;font-weight:700>.global</span><span style=color:#268bd2> _start </span>
+
+<span style=color:#93a1a1;font-style:italic>@ Every program needs a _start label.  This is where the program 
+</span><span style=color:#93a1a1;font-style:italic>@ will start. It does not need to be at the top of the file. 
+</span><span style=color:#93a1a1;font-style:italic>@ Maybe there is another function above this. Notice that a label 
+</span><span style=color:#93a1a1;font-style:italic>@ is defined by text followed by a colon. 
+</span><span style=color:#93a1a1;font-style:italic></span><span style=color:#268bd2>_start</span>: 
+
+<span style=color:#93a1a1;font-style:italic>@ The next line is a valid command though it&#39;s not going to do much 
+</span><span style=color:#93a1a1;font-style:italic>@ for you. The operation code is add which will add two numbers. The 
+</span><span style=color:#93a1a1;font-style:italic>@ two operands, r2 and r3, are registers. We will talk about them in 
+</span><span style=color:#93a1a1;font-style:italic>@ the next section. I generally indent op-codes one tab so that 
+</span><span style=color:#93a1a1;font-style:italic>@ they don&#39;t look like labels. 
+</span><span style=color:#93a1a1;font-style:italic></span>    add		<span style=color:#cb4b16>r2</span>, <span style=color:#cb4b16>r3</span>          <span style=color:#93a1a1;font-style:italic>@ Add r2 to r3 and store in r2 
+</span><span style=color:#93a1a1;font-style:italic></span>
+
+<span style=color:#93a1a1;font-style:italic>@ The next line is a section marker. Even though it looks like 
+</span><span style=color:#93a1a1;font-style:italic>@ the global directive, this just tells the compiler what data 
+</span><span style=color:#93a1a1;font-style:italic>@ will be loaded when the program is loaded into memory. 
+</span><span style=color:#93a1a1;font-style:italic></span><span style=color:#dc322f;font-weight:700>.data</span> 
+
+<span style=color:#93a1a1;font-style:italic>@ Within the data section, we will use labels to label data in the 
+</span><span style=color:#93a1a1;font-style:italic>@ same way we can label operations. There are multiple data types 
+</span><span style=color:#93a1a1;font-style:italic>@ but for this example, we will label a &#34;Hello World&#34; string 
+</span><span style=color:#93a1a1;font-style:italic>@ as hello. The .ascii is a data type that will tell the compiler 
+</span><span style=color:#93a1a1;font-style:italic>@ how to interpret the data. 
+</span><span style=color:#93a1a1;font-style:italic></span><span style=color:#268bd2>hello</span>:<span style=color:#dc322f;font-weight:700>		.ascii		</span>&#34;<span style=color:#2aa198>Hello World</span>&#34; 
+</code></pre></div></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#dependency-check>Dependency Check</a></li>
+<li><a href=#syntax>Syntax</a>
+<ul>
+<li><a href=#mnemonics>Mnemonics</a></li>
+<li><a href=#registers>Registers</a></li>
+<li><a href=#immediate-values>Immediate Values</a></li>
+</ul>
+</li>
+<li><a href=#file-format>File Format</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Register overview #  As mentioned before, the registers are inside the processor and allow the processor to operate on data. The ARM processor can not do calculations or manipulate data directly inside the memory. The ARM processor has 16 32-bit registers (r0-r15).
+Sane register usage #  While technically you can use every register, some of the registers are reserved for
+specific functions.
+ r0 - r12: General purpose - Use without care of reserved functionality r13: Stack pointer - Address location of stack in memory r14: Link register - Address location of where to return to after branch r15: Program counter - Address location of &ldquo;next&rdquo; operation to perform  And then, within the general purpose registers, there are some soft rules.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Register Overview">
+<meta property="og:description" content="Register overview #  As mentioned before, the registers are inside the processor and allow the processor to operate on data. The ARM processor can not do calculations or manipulate data directly inside the memory. The ARM processor has 16 32-bit registers (r0-r15).
+Sane register usage #  While technically you can use every register, some of the registers are reserved for
+specific functions.
+ r0 - r12: General purpose - Use without care of reserved functionality r13: Stack pointer - Address location of stack in memory r14: Link register - Address location of where to return to after branch r15: Program counter - Address location of &ldquo;next&rdquo; operation to perform  And then, within the general purpose registers, there are some soft rules.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://armasm.com/docs/registers-and-memory/register-overview/"><meta property="article:section" content="docs">
+<title>Register Overview | ARM Assembly By Example</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.cdf1d3339ad599910ecaf0b922791999eccee31382959665fd94442ac92b40e9.js integrity="sha256-zfHTM5rVmZEOyvC5InkZmezO4xOClZZl/ZREKskrQOk=" crossorigin=anonymous></script>
+<style>.blink_text{animation:.5s blinker linear infinite;color:red}@keyframes blinker{0%{opacity:1}50%{opacity:0}100%{opacity:1}}</style>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>ARM Assembly By Example</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<span>Getting to Hello World</span>
+<ul>
+<li>
+<a href=/docs/getting-to-hello-world/basics/>The Basics</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/exiting/>Program 1: Exiting</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/hello-world/>Program 2: Hello World</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Registers and Memory</span>
+<ul>
+<li>
+<a href=/docs/registers-and-memory/register-overview/ class=active>Register Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-overview/>Memory Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/find-the-otter/>Program 3: Find the Otter</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-copy/>Program 4: Memory Copy</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Branches and Conditionals</span>
+<ul>
+<li>
+<a href=/docs/branches-and-conditionals/conditionals/>Conditionals</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/branches-and-loops/>Branches and Loops</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/hello-world-revisited/>Program 5: Hello World Revisited</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/sticky-keyboard/>Program 6: Sticky Keyboard</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/inspecting-our-program/>Inspecting Our Program</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/cloning-myself/>Program 7: Cloning Myself</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Arithmetic</span>
+<ul>
+<li>
+<a href=/docs/arithmetic/errors-and-tests/>Errors and Tests</a>
+</li>
+<li>
+<a href=/docs/arithmetic/datatypes/>Datatypes</a>
+</li>
+<li>
+<a href=/docs/arithmetic/multiplication/>Multiplication</a>
+</li>
+<li>
+<a href=/docs/arithmetic/itoa/>Program 8: ITOA</a>
+</li>
+<li>
+<a href=/docs/arithmetic/the-stack/>The Stack</a>
+</li>
+<li>
+<a href=/docs/arithmetic/factorial/>Program 9: Factorials</a>
+</li>
+<li>
+<a href=/docs/arithmetic/sum-of-squares/>Program 10: Sum of Squares</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Bit Operations</span>
+<ul>
+<li>
+<a href=/docs/bit-operations/signed-numbers/>Signed Numbers</a>
+</li>
+<li>
+<a href=/docs/bit-operations/positivty/>Program 11: All Positivity</a>
+</li>
+<li>
+<a href=/docs/bit-operations/exorcise/>Exorcise and bicycle orr...</a>
+</li>
+<li>
+<a href=/docs/bit-operations/ok-be-negative/>Program 12: Ok, Be Negative</a>
+</li>
+<li>
+<a href=/docs/bit-operations/xor-cipher/>Program 13: XOR Cipher</a>
+</li>
+<li>
+<a href=/docs/bit-operations/shifting/>Shifting and Rotating</a>
+</li>
+<li>
+<a href=/docs/bit-operations/hex-and-love/>Program 14: Hex and Love</a>
+</li>
+<li>
+<a href=/docs/bit-operations/unsale/>Program 15: The Un-sale</a>
+</li>
+<li>
+<a href=/docs/bit-operations/64-bit-math/>Program 16: 64-bit Math</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Working in Linux</span>
+<ul>
+<li>
+<a href=/docs/working-in-linux/add-the-arguments/>Program 17: Add the Arguments</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-inputs/>Program 18: Add the Inputs</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-file/>Program 19: Add the File</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix A: VFP Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/fpu/overview/>FPU Overview</a>
+</li>
+<li>
+<a href=/docs/fpu/here-to-there/>Program 20: Here to There</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix B: NEON Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/neon/overview/>NEON Overview</a>
+</li>
+<li>
+<a href=/docs/neon/bus-rider/>Program 21: Bus Rider</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Register Overview</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#sane-register-usage>Sane register usage</a></li>
+<li><a href=#the-17th-register>The 17th register</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h1 id=register-overview>
+Register overview
+<a class=anchor href=#register-overview>#</a>
+</h1>
+<p>As mentioned before, the registers are inside the processor and allow the processor
+to operate on data. The ARM processor can not do calculations or manipulate data
+directly inside the memory. The ARM processor has 16 32-bit registers (r0-r15).</p>
+<h2 id=sane-register-usage>
+Sane register usage
+<a class=anchor href=#sane-register-usage>#</a>
+</h2>
+<p>While technically you can use every register, some of the registers are reserved for<br>
+specific functions.</p>
+<ul>
+<li>r0 - r12: General purpose - Use without care of reserved functionality</li>
+<li>r13: Stack pointer - Address location of stack in memory</li>
+<li>r14: Link register - Address location of where to return to after branch</li>
+<li>r15: Program counter - Address location of &ldquo;next&rdquo; operation to perform</li>
+</ul>
+<p>And then, within the general purpose registers, there are some soft rules.</p>
+<ul>
+<li>r0-r3 is generally reserved for calling functions</li>
+<li>r4-r12 is generally safe to preserve data after/during function calls</li>
+</ul>
+<blockquote class="book-hint warning">
+The most important take away: Don&rsquo;t use r13-r15 unless you really understand what you&rsquo;re doing.
+</blockquote>
+<h2 id=the-17th-register>
+The 17th register
+<a class=anchor href=#the-17th-register>#</a>
+</h2>
+<p>Ok, I lied a little. There is a 17th register called the Current Program Status
+Register (CPSR). The CPSR keeps track of things that the processor needs to know
+when executing operations. It keeps track of things like condtional states,
+endianness, thumb mode enabled, interrupt flags, processor mode, etc.</p>
+<p>For right now, of the 32-bits in the register, you only need to worry about bits
+28-31. These bits will allow you to start writing conditional operations soon.</p>
+<ul>
+<li>31: <strong>N</strong>egative: If N is 1 the signed value is negative, and cleared if the result is positive or zero.</li>
+<li>30: <strong>Z</strong>ero: set if the result is zero</li>
+<li>29: <strong>C</strong>arry:
+<ul>
+<li>With the instructions ADC, ADD, and CMN, this flag is set if the result would produce an unsigned overflow.</li>
+<li>With the instructions CMP, SBC, and SUB, this flag is set if the result would <strong>not</strong> need a borrow from an imaginary bit.<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup></li>
+<li>For other instructions that use shifting, this flag is set to the value of the last bit shifted out by the shifter.</li>
+<li>Other instructions usually leave this flag alone.</li>
+</ul>
+</li>
+<li>28: o<strong>V</strong>erflow: for addition and subtraction, this flag is set if a signed overflow occurred. Otherwise, it is generally left alone. Note that some API conventions may specifically set oVerflow to flag an error condition.</li>
+</ul>
+<section class=footnotes role=doc-endnotes>
+<hr>
+<ol>
+<li id=fn:1 role=doc-endnote>
+<p>I think of this as this is the bit that would be borrowed from for subtraction operations.&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#sane-register-usage>Sane register usage</a></li>
+<li><a href=#the-17th-register>The 17th register</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!doctype html><html lang=en-us dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="The two &#34;standard&#34; recursion formulas used in programming are the Fibonacci series  and factorials. Write a program that calculates 9! and prints the number to stdout. 
+">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Program 9: Factorials">
+<meta property="og:description" content="The two &#34;standard&#34; recursion formulas used in programming are the Fibonacci series  and factorials. Write a program that calculates 9! and prints the number to stdout. 
+">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://armasm.com/docs/arithmetic/factorial/"><meta property="article:section" content="docs">
+<title>Program 9: Factorials | ARM Assembly By Example</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.cdf1d3339ad599910ecaf0b922791999eccee31382959665fd94442ac92b40e9.js integrity="sha256-zfHTM5rVmZEOyvC5InkZmezO4xOClZZl/ZREKskrQOk=" crossorigin=anonymous></script>
+<style>.blink_text{animation:.5s blinker linear infinite;color:red}@keyframes blinker{0%{opacity:1}50%{opacity:0}100%{opacity:1}}</style>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>ARM Assembly By Example</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<span>Getting to Hello World</span>
+<ul>
+<li>
+<a href=/docs/getting-to-hello-world/basics/>The Basics</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/exiting/>Program 1: Exiting</a>
+</li>
+<li>
+<a href=/docs/getting-to-hello-world/hello-world/>Program 2: Hello World</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Registers and Memory</span>
+<ul>
+<li>
+<a href=/docs/registers-and-memory/register-overview/>Register Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-overview/>Memory Overview</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/find-the-otter/>Program 3: Find the Otter</a>
+</li>
+<li>
+<a href=/docs/registers-and-memory/memory-copy/>Program 4: Memory Copy</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Branches and Conditionals</span>
+<ul>
+<li>
+<a href=/docs/branches-and-conditionals/conditionals/>Conditionals</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/branches-and-loops/>Branches and Loops</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/hello-world-revisited/>Program 5: Hello World Revisited</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/sticky-keyboard/>Program 6: Sticky Keyboard</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/inspecting-our-program/>Inspecting Our Program</a>
+</li>
+<li>
+<a href=/docs/branches-and-conditionals/cloning-myself/>Program 7: Cloning Myself</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Arithmetic</span>
+<ul>
+<li>
+<a href=/docs/arithmetic/errors-and-tests/>Errors and Tests</a>
+</li>
+<li>
+<a href=/docs/arithmetic/datatypes/>Datatypes</a>
+</li>
+<li>
+<a href=/docs/arithmetic/multiplication/>Multiplication</a>
+</li>
+<li>
+<a href=/docs/arithmetic/itoa/>Program 8: ITOA</a>
+</li>
+<li>
+<a href=/docs/arithmetic/the-stack/>The Stack</a>
+</li>
+<li>
+<a href=/docs/arithmetic/factorial/ class=active>Program 9: Factorials</a>
+</li>
+<li>
+<a href=/docs/arithmetic/sum-of-squares/>Program 10: Sum of Squares</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Bit Operations</span>
+<ul>
+<li>
+<a href=/docs/bit-operations/signed-numbers/>Signed Numbers</a>
+</li>
+<li>
+<a href=/docs/bit-operations/positivty/>Program 11: All Positivity</a>
+</li>
+<li>
+<a href=/docs/bit-operations/exorcise/>Exorcise and bicycle orr...</a>
+</li>
+<li>
+<a href=/docs/bit-operations/ok-be-negative/>Program 12: Ok, Be Negative</a>
+</li>
+<li>
+<a href=/docs/bit-operations/xor-cipher/>Program 13: XOR Cipher</a>
+</li>
+<li>
+<a href=/docs/bit-operations/shifting/>Shifting and Rotating</a>
+</li>
+<li>
+<a href=/docs/bit-operations/hex-and-love/>Program 14: Hex and Love</a>
+</li>
+<li>
+<a href=/docs/bit-operations/unsale/>Program 15: The Un-sale</a>
+</li>
+<li>
+<a href=/docs/bit-operations/64-bit-math/>Program 16: 64-bit Math</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Working in Linux</span>
+<ul>
+<li>
+<a href=/docs/working-in-linux/add-the-arguments/>Program 17: Add the Arguments</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-inputs/>Program 18: Add the Inputs</a>
+</li>
+<li>
+<a href=/docs/working-in-linux/add-the-file/>Program 19: Add the File</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix A: VFP Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/fpu/overview/>FPU Overview</a>
+</li>
+<li>
+<a href=/docs/fpu/here-to-there/>Program 20: Here to There</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<span>Appendix B: NEON Coprocessor</span>
+<ul>
+<li>
+<a href=/docs/neon/overview/>NEON Overview</a>
+</li>
+<li>
+<a href=/docs/neon/bus-rider/>Program 21: Bus Rider</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Program 9: Factorials</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#including-other-files-pt-2>Including Other Files, Pt. 2</a></li>
+<li><a href=#stack-frame>Stack Frame</a>
+<ul>
+<li><a href=#frame-base-pointer>Frame Base Pointer</a></li>
+</ul>
+</li>
+<li><a href=#bl-and-bx-operations>BL and BX operations</a>
+<ul>
+<li><a href=#example-using-bl-and-bx>Example using BL and BX</a></li>
+<li><a href=#recursive-functions>Recursive functions</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown>
+<h1>
+<a href=/docs/arithmetic/factorial/ style=color:#000>Program 9: Factorials</a>
+</h1>
+<style>.stack-grid{display:grid;grid-template-columns:[fn] 1fr [frame] 1fr [label] 1fr [end];border:2px solid #000}.stack-fn{padding-left:4px;grid-column:fn/frame}.frame{grid-column:frame/label;height:32px;border-width:0 2px 2px;border-color:#000;border-style:solid;padding-left:4px;line-height:32px}.stack-label{grid-column:label/end;padding-lect:4px}.frame:last-of-type{border-bottom-width:0}</style>
+<h2 id=including-other-files-pt-2>
+Including Other Files, Pt. 2
+<a class=anchor href=#including-other-files-pt-2>#</a>
+</h2>
+<p>In addition to using macros, we can use instructions in compile object files. In this
+template, you can see the itoa.s file has been moved here with all of the code. When we
+assemble the source into an object file, we are making a primitive static library.</p>
+<p>To expose code, you need to tell the linker what functions it can use. This is similar to exporting
+or marking code as public in other languages. In ARM assembly, you just specify <code>.global label</code>. This
+is why we need to put the <code>.global _start</code> in our main file &ndash; so the linker cna find it. To include
+the code, it&rsquo;s as simple as giving both files to the linker. The makefile will do this for you automatically
+for this program.</p>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ld -o main main.o itoa.o 
+</code></pre></div><h2 id=stack-frame>
+Stack Frame
+<a class=anchor href=#stack-frame>#</a>
+</h2>
+<p>One very common way of managing the stack is by using &ldquo;frames&rdquo; to outline data &ldquo;packages&rdquo; on the stack.
+Although this is a somewhat more theoretical discussion of how to use the stack, we will use it for our
+next program. The idea is that every procedure or function will have it&rsquo;s own little space in the stack
+where it can keep its information in an ordered way. If we had the following code: (non-sensical)</p>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#859900>fn</span> <span style=color:#268bd2>main</span>() {
+    <span style=color:#859900>let</span> <span style=color:#268bd2>res</span> = <span style=color:#268bd2>a</span>(<span style=color:#2aa198;font-weight:700>1</span>, <span style=color:#2aa198;font-weight:700>2</span>); 
+}
+
+<span style=color:#859900>fn</span> <span style=color:#268bd2>a</span>(<span style=color:#268bd2>param1</span>: <span style=color:#859900;font-weight:700>i32</span>, <span style=color:#268bd2>param2</span>: <span style=color:#859900;font-weight:700>i32</span>) -&gt; <span style=color:#859900;font-weight:700>i32</span> {
+    <span style=color:#268bd2>b</span>(<span style=color:#268bd2>param2</span>) + <span style=color:#2aa198;font-weight:700>3</span>
+}
+
+<span style=color:#859900>fn</span> <span style=color:#268bd2>b</span>(<span style=color:#268bd2>param1</span>: <span style=color:#859900;font-weight:700>i32</span>) -&gt; <span style=color:#859900;font-weight:700>i32</span> {
+    <span style=color:#268bd2>param1</span> + <span style=color:#2aa198;font-weight:700>1</span>
+}
+</code></pre></div><p>This is what the stack may possibly look like right before the point of adding 1 to param1 in <code>b()</code>.</p>
+<div class=stack-grid>
+<div class=stack-fn>OS ENV params</div>
+<div class=frame> ... </div>
+<div class=stack-label>⬅️ Base pointer addr for main()</div>
+<div class=stack-fn style="background-color:#97f9f9;grid-row:span 5">main()</div>
+<div class=frame>Space for local param `res`</div>
+<div class=frame>Param 2 for a()</div>
+<div class=frame>Param 1 for a()</div>
+<div class=frame>Return to main() address</div>
+<div class=frame>Address for main() base pointer</div>
+<div class=stack-label>⬅️ Base pointer addr for a()</div>
+<div class=stack-fn style="background-color:#c1e0f7;grid-row:span 5">a()</div>
+<div class=frame>Saved registers</div>
+<div class=frame>Local var if needed</div>
+<div class=frame>Param 1 for b()</div>
+<div class=frame>Return to a() address</div>
+<div class=frame>Address for a() base pointer</div>
+<div class=stack-label>⬅️ Base pointer addr for b()</div>
+<div class=stack-fn style="background-color:#c59fc9;grid-row:span 2">b()</div>
+<div class=frame>Saved registers</div>
+<div class=frame>Local var if needed</div>
+<div class=stack-label>⬅️ Stack pointer</div>
+</div>
+<p>Generally the caller function will push the params to the callee in reverse order. After that, the
+branch is made. When the callee recieves control, the callee will save both the return address as
+well as the old frame base address. It will then move the frame base to the same value as the stack pointer
+and we have our new frame.</p>
+<h3 id=frame-base-pointer>
+Frame Base Pointer
+<a class=anchor href=#frame-base-pointer>#</a>
+</h3>
+<p>Why do we use a frame base? It seems like information that we can just get rid of, right? We already have
+a stack pointer. A frame pointer allows us to refer to values without regard of tracking exactly where the
+stack pointer is located. If you look at the above chart again, notice that the old base pointer address
+is always in the same place in relation the the current base pointer. The return address is always in the
+same place in relation the current base pointer. The parameters for the called functions are always in the same
+place in relation to the base pointer.</p>
+<h2 id=bl-and-bx-operations>
+BL and BX operations
+<a class=anchor href=#bl-and-bx-operations>#</a>
+</h2>
+<p>One of those other registers that I said never to touch is the link register or r14. When
+using the branch-and-link (BL) opcode, the next instruction address is stored in r14 and
+branches to the address the opcode specifies. At the end of the routine you then use
+the branch-and-exchange opcode (BX) to go back to where you left off.</p>
+<h3 id=example-using-bl-and-bx>
+Example using BL and BX
+<a class=anchor href=#example-using-bl-and-bx>#</a>
+</h3>
+<h4 id=adds>
+add.s
+<a class=anchor href=#adds>#</a>
+</h4>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-armasm data-lang=armasm><span style=color:#dc322f;font-weight:700>.global</span><span style=color:#268bd2> add
+</span><span style=color:#268bd2></span>
+<span style=color:#268bd2>add</span>:
+    add     <span style=color:#cb4b16>r0</span>, #<span style=color:#2aa198;font-weight:700>2</span>      <span style=color:#93a1a1;font-style:italic>@ add 2 to register 0 
+</span><span style=color:#93a1a1;font-style:italic></span>    bx      lr          <span style=color:#93a1a1;font-style:italic>@ branch and exchange to where you jumped from 
+</span></code></pre></div><h4 id=mains>
+main.s
+<a class=anchor href=#mains>#</a>
+</h4>
+<div class=highlight><pre tabindex=0 style=color:#586e75;background-color:#eee8d5;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-armasm data-lang=armasm><span style=color:#dc322f;font-weight:700>.global</span><span style=color:#268bd2> _start </span>
+
+<span style=color:#268bd2>_start</span>: 
+    mov     <span style=color:#cb4b16>r0</span>, #<span style=color:#2aa198;font-weight:700>3</span>      <span style=color:#93a1a1;font-style:italic>@ move 3 into r0 
+</span><span style=color:#93a1a1;font-style:italic></span>    bl      add         <span style=color:#93a1a1;font-style:italic>@ jump to add 
+</span><span style=color:#93a1a1;font-style:italic></span>    <span style=color:#93a1a1;font-style:italic>@ here r0 = 5 (3 + 2)
+</span><span style=color:#93a1a1;font-style:italic></span>    <span style=color:#93a1a1;font-style:italic>@ ... code continues 
+</span></code></pre></div><h3 id=recursive-functions>
+Recursive functions
+<a class=anchor href=#recursive-functions>#</a>
+</h3>
+<p>If you combine these two ideas, you can start writing recursive functions! In addition
+to pushing the values you want to save, push <code>lr</code> (link register) after the <code>bl</code> as well.
+When the string of recursive calls terminates, because you are pushing <code>lr</code>,
+you would be able to <code>pop {lr}</code> before <code>bx lr</code> and get back to wherever you started.
+If you didn&rsquo;t push the return address, you would get into a loop as the <code>bl</code>
+overwrites the link register every time.</p>
+<hr>
+<h2>Program 9: Factorials Video - Coming Soon </h2>
+<div style=position:relative;padding-bottom:56.25%;height:0;overflow:hidden>
+<img src="https://loremflickr.com/960/540/mango,fruit?lock=2">
+</div>
+<div style=width:100%;display:flex;flex-direction:column>
+<div style="flex:1 0;padding-bottom:16px">
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Description of Program</div>
+<div>The two &ldquo;standard&rdquo; recursion formulas used in programming are the Fibonacci series and factorials. Write a program that calculates 9! and prints the number to stdout.</div>
+</div>
+</div>
+<div style=display:flex;flex-direction:row>
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Template/Input</div>
+<div>
+<a href=https://github.com/gpit2286/armasm-by-example/tree/master/09-factorial/template>Github</a>
+</div>
+</div>
+<div style="display:flex;flex:1 0 auto;flex-direction:column">
+<div style=font-weight:700>Completed Code</div>
+<div><a href=https://github.com/gpit2286/armasm-by-example/tree/master/09-factorial>Github</a></div>
+</div>
+<div style="display:flex;flex:2 0 auto;flex-direction:column">
+<div style=font-weight:700>Expected Output</div>
+<div>
+<pre style=margin:0;padding-top:4px;width:auto>362880</pre>
+</div>
+</div>
+</div>
+</div>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){if(window.getSelection().toString())return;a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#including-other-files-pt-2>Including Other Files, Pt. 2</a></li>
+<li><a href=#stack-frame>Stack Frame</a>
+<ul>
+<li><a href=#frame-base-pointer>Frame Base Pointer</a></li>
+</ul>
+</li>
+<li><a href=#bl-and-bx-operations>BL and BX operations</a>
+<ul>
+<li><a href=#example-using-bl-and-bx>Example using BL and BX</a></li>
+<li><a href=#recursive-functions>Recursive functions</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
