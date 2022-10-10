@@ -1,0 +1,10 @@
+languageCode = "en-us"
+title = "ARM Assembly By Example"
+theme="book"
+
+[markup]
+    [markup.goldmark]
+        [markup.goldmark.renderer]
+            unsafe = true
+    [markup.highlight]
+        style = "solarized-light"

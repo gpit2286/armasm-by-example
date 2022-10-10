@@ -1,0 +1,54 @@
+{{ define "main" }}
+<article class="markdown">
+  <h1>
+    <a href="{{ .RelPermalink }}" style="color: black;">{{ partial "docs/title.html" . }}</a>
+  </h1>
+  {{ partial "docs/post-meta" . }}
+  {{- .Content -}}
+  <hr>
+    <h2>{{ print .Page.Title }} Video {{ if eq .Params.youtube_id ""}} - Coming Soon {{end}}</h2>
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      {{ if ne .Params.youtube_id ""}}
+      <iframe src="https://www.youtube.com/embed/{{ print .Params.youtube_id }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+      {{ else }}
+      <img src="https://loremflickr.com/960/540/mango,fruit?lock=2">
+      {{ end }}
+    </div>
+      <div style="width: 100%; display: flex; flex-direction: column">
+        <div style="flex: 1 0; padding-bottom: 16px">
+            <div style="display:flex; flex: 1 0 auto; flex-direction: column">
+                <div style="font-weight: bold;">Description of Program</div>
+                <div>{{ .Params.description | markdownify }}</div>
+            </div>
+        </div>
+        <div style="display: flex; flex-direction: row"> 
+            <div style="display:flex; flex: 1 0 auto; flex-direction: column">
+                <div style="font-weight: bold;">Template/Input</div>
+                <div>{{ if isset .Params "input" }}
+                        <a href="{{ print .Params.input }}">Github</a>
+                     {{ else }}
+                        {{ print "None" }}
+                      {{ end }}
+                </div>
+            </div>
+            <div style="display:flex; flex: 1 0 auto; flex-direction: column">
+                <div style="font-weight: bold;">Completed Code</div>
+                <div><a href="{{ print .Params.source }}">Github</a></div>
+            </div>
+            <div style="display:flex; flex: 2 0 auto; flex-direction: column">
+                <div style="font-weight: bold;">Expected Output</div>
+                <div>
+                    <pre style="margin: 0px; padding-top:4px; width: auto">{{ print .Params.output }}</pre>
+                </div>
+            </div>
+            
+        </div>
+      </div>
+
+</article>
+{{ end }}
+
+{{ define "toc" }}
+  {{ partial "docs/toc" . }}
+{{ end }}
+
