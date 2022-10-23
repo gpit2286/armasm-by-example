@@ -9,7 +9,7 @@
 @   r12 - frame base pointer 
 
 @ Factorial beginning number 
-.equ    maxnum, 3 
+.equ    maxnum, 9 
 
 .global _start 
 
@@ -31,7 +31,7 @@ _start:
     mov     r2, #11         @ 11 = str length 
     svc     0 
     
-    @ Clean up stack frmae here if nessacary 
+    @ Clean up stack frame here if nessacary 
     @ setup exit 
     mov     r7, #1          @ 1 = exit 
     mov     r0, #0          @ 0 = no error 
