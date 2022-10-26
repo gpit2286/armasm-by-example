@@ -8,7 +8,7 @@ description: >
     and factorials. Write a program that calculates 9! and prints the number to stdout. 
 
 source: https://github.com/gpit2286/armasm-by-example/tree/master/09-factorial
-youtube_id: "" 
+youtube_id: "fwSOpLE2XnE" 
 input: https://github.com/gpit2286/armasm-by-example/tree/master/09-factorial/template
 output: "362880"
 ---
