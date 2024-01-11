@@ -47,7 +47,7 @@ inner:
     ldrb    r10, [r6, r9]   @ load hexstr + offset to get letter 
     strb    r10, [r5], #1   @ str hexstr and increment
     ldrb    r8, [r4], #1    @ load next int to convert
-    add     r6, #1          @ increment counter 
+    add     r11, #1          @ increment counter 
     b       inner 
 inexit: 
     mov     r10, #'\n'      @ load line ending 
